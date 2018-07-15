@@ -6,4 +6,12 @@ export default keyMirror({
 	UPDATE_LEVEL: null,
 	COMPLETE_LEVEL: null,
 	FAILED_LEVEL: null,
+
+	/* PLAYER(S) */
+	CREATE_PLAYER: null,
+	CHOOSE_PLAYER: null,
+
+	/* CHOOSE PLAYER MODAL */
+	OPEN_CHOOSE_PLAYER_MODAL: null,
+	CLOSE_CHOOSE_PLAYER_MODAL: null,
 });

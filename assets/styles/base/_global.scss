@@ -2,6 +2,25 @@
 
 * {
 	box-sizing: border-box;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Righteous', cursive;
+	margin: 0;
+	letter-spacing: 2px;
+}
+
+p {
+	margin: 0;
+}
+
+h4 {
+	font-size: 18px;
+}
+
+a {
+	color: $light;
 }
 
 body {
@@ -24,4 +43,38 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.InputGroup {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	justify-content: center;
+}
+
+.Input {
+	display: block;
+	width: 400px;
+	max-width: 100%;
+	padding: 10px 15px;
+	outline: none;
+}
+
+.Button {
+	display: block;
+	min-width: 140px;
+	color: $light;
+	background-color: $primary;
+	padding: 10px;
+	border: 1px solid $primary;
+	border-radius: 2px;
+	outline: none;
+	cursor: pointer;
+	transition: 0.3s;
+	font-size: 16px;
+	letter-spacing: 1px;
+
+	&:hover {
+		background-color: $active;
+	}
 }

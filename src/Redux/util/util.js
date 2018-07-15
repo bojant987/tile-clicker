@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import MOVEMENT_RULES from '../constants/movementRules';
 import { ACTIVE, IDLE } from '../constants/tileStatuses';
 
@@ -29,4 +30,22 @@ export const calculateStatus = (referencePos, newTilePos) => {
 	}
 
 	return IDLE;
+};
+
+// AppContainer is in charge of giving feedback when local storage is disabled
+// so we don't want these two to log error pointlessly
+export const saveInStorage = (key, value) => {
+	try {
+		localStorage.setItem(key, value);
+	} catch (e) {}
+};
+
+export const getFromStorage = key => {
+	let value;
+
+	try {
+		value = localStorage.getItem(key);
+	} catch (e) {}
+
+	return value;
 };

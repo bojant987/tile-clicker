@@ -1,0 +1,20 @@
+@import "../base/variables";
+
+.Footer {
+	height: $footerHeight;
+	display: flex;
+	//flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: $dark;
+	font-style: italic;
+	color: $light;
+	font-weight: 300;
+	padding: 10px 0;
+}
+
+.Footer__author, .Footer__iconsCredit {
+	flex: 1;
+	padding: 0 10px;
+}

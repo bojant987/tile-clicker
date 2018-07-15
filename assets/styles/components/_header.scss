@@ -1,0 +1,82 @@
+@import "../base/variables";
+
+.Header {
+	height: $headerHeight;
+	background-color: $dark;
+	padding: 10px;
+	position: relative;
+}
+
+.Header__item {
+	margin: 5px 0;
+	padding: 5px 10px;
+	border: 1px solid $light;
+	border-radius: 4px;
+	cursor: pointer;
+	color: $light;
+	transition: 0.3s;
+
+	&:hover {
+		color: $primary;
+		border-color: $primary;
+	}
+}
+
+.Header__menu {
+	height: 100%;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	display: none;
+
+	@media(min-width: $phablet) {
+		display: flex;
+	}
+
+	&--mobileOpen {
+		@media(max-width: $phablet) {
+			position: absolute;
+			left: 0;
+			padding: 20px;
+			height: fit-content;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			width: 100%;
+			background-color: #282825;
+			z-index: 100;
+		}
+	}
+}
+
+.Header__menuCollapse {
+	cursor: pointer;
+	outline: none;
+	width: 36px;
+	display: block;
+	padding: 4px;
+	border: 1px solid $light;
+	border-radius: 4px;
+	background-color: transparent;
+	transition: 0.3s;
+
+	@media(min-width: $phablet) {
+		display: none;
+	}
+
+	&:hover, &:active {
+		background-color: $light;
+
+		.Header__menuCollapseBar {
+			background-color: $dark;
+		}
+	}
+}
+
+.Header__menuCollapseBar {
+	display: block;
+	padding: 1px 0;
+	margin: 5px 0;
+	background-color: $light;
+	transition: 0.3s;
+}

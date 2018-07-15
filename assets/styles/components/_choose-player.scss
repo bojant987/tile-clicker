@@ -1,0 +1,48 @@
+@import "../base/variables";
+
+.ChoosePlayer {
+	color: $dark;
+	width: 600px;
+	max-width: 100%;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+}
+
+.ChoosePlayer__error {
+	color: $error;
+}
+
+.ChoosePlayer__choose, .ChoosePlayer__create {
+	border: 2px solid $ternary;
+	border-radius: 4px;
+	flex: 0 1 100%;
+	max-width: 100%;
+}
+
+.ChoosePlayer__playerListItem {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 5px 0;
+	color: $idle;
+	font-size: 18px;
+	font-weight: 400;
+	cursor: pointer;
+
+	&--active {
+		color: $active;
+	}
+}
+
+.ChoosePlayer__playerListItemIcon {
+	width: 22px;
+	margin-left: 10px;
+}
+
+.ChoosePlayer__noActive {
+	color: $secondary;
+}

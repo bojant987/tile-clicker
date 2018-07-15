@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer as HotContainer } from 'react-hot-loader';
 
-import App from './App';
+import 'rodal/lib/rodal.css';
+import '../assets/styles/main.scss';
 
-require('../assets/styles/main.scss');
+import App from './App';
 
 const render = Component => {
 	ReactDOM.render(

@@ -5,13 +5,32 @@ import { connect } from 'react-redux';
 import { ACTIVE, IDLE } from '../../Redux/constants/tileStatuses';
 import buildLevel from '../../Redux/actions/buildLevel';
 import updateLevel from '../../Redux/actions/updateLevel';
+import { openChoosePlayerModal } from '../../Redux/actions/choosePlayer';
 
-const Tile = props => {
-	const { xPos, yPos, status, buildNextLvl, updateLvl, levelInProgress, nextLevel, levelNr, levelTiles } = props;
+export const _Tile = props => {
+	const {
+		xPos,
+		yPos,
+		status,
+		buildNextLvl,
+		updateLvl,
+		levelInProgress,
+		nextLevel,
+		levelNr,
+		levelTiles,
+		activePlayer,
+		openChoosePlayer,
+	} = props;
 
 	const calculateStatusClassName = () => (status ? `Board__tile--${status}` : '');
 
 	const resolveAction = () => {
+		if (!activePlayer.name) {
+			openChoosePlayer();
+
+			return;
+		}
+
 		if (levelInProgress) {
 			if (status === ACTIVE || status === IDLE) {
 				updateLvl({ x: xPos, y: yPos, status }, levelNr, levelTiles);
@@ -24,7 +43,7 @@ const Tile = props => {
 	return <div className={`Board__tile ${calculateStatusClassName()}`} onClick={resolveAction} />;
 };
 
-Tile.propTypes = {
+_Tile.propTypes = {
 	buildNextLvl: PropTypes.func.isRequired,
 	updateLvl: PropTypes.func.isRequired,
 	xPos: PropTypes.number.isRequired,
@@ -33,10 +52,12 @@ Tile.propTypes = {
 	levelInProgress: PropTypes.bool.isRequired,
 	levelNr: PropTypes.number.isRequired,
 	levelTiles: PropTypes.object.isRequired,
+	activePlayer: PropTypes.object.isRequired,
+	openChoosePlayer: PropTypes.func.isRequired,
 	status: PropTypes.string,
 };
 
-Tile.defaultProps = {
+_Tile.defaultProps = {
 	status: null,
 };
 
@@ -48,14 +69,16 @@ const mapStateToProps = (state, ownProps) => ({
 	levelNr: state.currentLevel.levelNr,
 	levelTiles: state.currentLevel.tiles,
 	nextLevel: state.nextLevel,
+	activePlayer: state.activePlayer,
 });
 
 const mapDispatchToProps = dispatch => ({
 	buildNextLvl: (pos, levelNr) => dispatch(buildLevel(pos, levelNr)),
 	updateLvl: (referenceTile, levelNr, levelTiles) => dispatch(updateLevel(referenceTile, levelNr, levelTiles)),
+	openChoosePlayer: () => dispatch(openChoosePlayerModal()),
 });
 
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Tile);
+)(_Tile);
