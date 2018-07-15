@@ -1,5 +1,9 @@
 @import "variables";
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 }
@@ -11,6 +15,7 @@ body {
 
 main {
 	min-height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+	background-color: $primary;
 }
 
 .LocalStorageError__message {

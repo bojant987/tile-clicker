@@ -1,0 +1,18 @@
+@import "../base/variables";
+
+.Board__tile {
+	border-left: 1px solid #000;
+	flex: 1;
+}
+
+.Board__tile--active {
+	background-color: $active;
+}
+
+.Board__tile--idle {
+	background-color: $idle;
+}
+
+.Board__tile--passive {
+	background-color: $passive;
+}

@@ -1,6 +1,14 @@
+// base
 @import './base/variables';
 @import './base/global';
+
+// helpers
 @import './helpers/paddings';
 @import './helpers/margins';
 @import './helpers/util';
-@import './components/component';
+
+// components
+@import './components/game';
+@import './components/board';
+@import './components/board-row';
+@import './components/tile';

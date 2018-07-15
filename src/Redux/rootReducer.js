@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
-import someReducer from './reducers/someReducer';
+
+import currentLevel from './reducers/currentLevel';
+import nextLevel from './reducers/nextLevel';
 
 export default combineReducers({
-	someReducer,
+	currentLevel,
+	nextLevel,
 });

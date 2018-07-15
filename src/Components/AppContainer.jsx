@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router';
 
-import AppHeader from './Header';
-import AppFooter from './Footer';
+import AppHeader from './Shared/Header';
+import AppFooter from './Shared/Footer';
 
 class _AppContainer extends React.Component {
 	static propTypes = {
