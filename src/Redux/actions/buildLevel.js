@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import actionTypes from '../constants/actionTypes';
 import { calculateStatus, getPossibleTiles } from '../util/util';
+import { startTimer } from './levelTimer';
 import { PASSIVE } from '../constants/tileStatuses';
 
 const calculateTile = (pos, tiles, referencePos) => {
@@ -48,6 +49,8 @@ const getNextTile = (pos, tiles, levelNr, dispatch, referencePos) => {
 };
 
 const buildLevel = (pos, levelNr) => dispatch => {
+	dispatch(startTimer());
+
 	const tiles = {
 		[`${pos.x}-${pos.y}`]: {
 			status: PASSIVE,

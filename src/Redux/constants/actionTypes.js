@@ -6,6 +6,8 @@ export default keyMirror({
 	UPDATE_LEVEL: null,
 	COMPLETE_LEVEL: null,
 	FAILED_LEVEL: null,
+	UPDATE_TIMER: null,
+	STOP_TIMER: null,
 
 	/* PLAYER(S) */
 	CREATE_PLAYER: null,

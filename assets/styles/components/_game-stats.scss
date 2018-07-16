@@ -1,0 +1,30 @@
+@import "../base/variables";
+
+.GameStats {
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.GameStats__timer {
+	background: url('../../img/time.svg') no-repeat 0 center;
+	background-size: 20px;
+}
+
+.GameStats__remaining {
+	background: url('../../img/cursor.svg') no-repeat 0 center;
+	background-size: 20px;
+}
+
+.GameStats__lives {
+	background: url('../../img/heart-icon.svg') no-repeat 0 center;
+	background-size: 20px;
+}
+
+.GameStats__level {
+	background: url('../../img/battery.svg') no-repeat 0 center;
+	background-size: 20px;
+}

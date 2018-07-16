@@ -1,10 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 
+import GameStats from './GameStats';
 import Board from './Board';
 
 const Game = () => (
 	<div className="Game">
+		<GameStats />
 		<Board />
 	</div>
 );

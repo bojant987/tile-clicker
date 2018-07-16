@@ -1,8 +1,9 @@
 import actionTypes from '../constants/actionTypes';
 import { calculateStatus } from '../util/util';
+import { stopTimer } from './levelTimer';
 import { ACTIVE, IDLE, PASSIVE } from '../constants/tileStatuses';
 
-const updateLevel = (referenceTile, levelNr, levelTiles) => dispatch => {
+const updateLevel = (referenceTile, levelNr, levelTiles, playerName) => dispatch => {
 	// if clicked tile status is idle, user clicked the wrong tile, the end.
 	// Oh, and calculate remaining tiles to punish him
 	if (referenceTile.status === IDLE) {
@@ -11,6 +12,8 @@ const updateLevel = (referenceTile, levelNr, levelTiles) => dispatch => {
 		dispatch({
 			type: actionTypes.FAILED_LEVEL,
 			lives: remainingTiles.length,
+			levelNr,
+			playerName,
 		});
 
 		return;
@@ -32,10 +35,14 @@ const updateLevel = (referenceTile, levelNr, levelTiles) => dispatch => {
 
 	// all tiles passive === all clicked, dispatch complete level
 	if (Object.values(newTiles).every(tile => tile.status === PASSIVE)) {
+		dispatch(stopTimer());
 		dispatch({
 			type: actionTypes.COMPLETE_LEVEL,
+			levelNr,
+			playerName,
 		});
 	} else {
+		dispatch(stopTimer());
 		dispatch({
 			type: actionTypes.UPDATE_LEVEL,
 			tiles: newTiles,

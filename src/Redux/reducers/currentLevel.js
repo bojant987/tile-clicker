@@ -4,6 +4,7 @@ const initialState = {
 	tiles: {},
 	inProgress: false,
 	levelNr: 1,
+	timer: 0,
 };
 
 export default function currentLevel(state = initialState, action) {
@@ -20,9 +21,18 @@ export default function currentLevel(state = initialState, action) {
 				tiles: action.tiles,
 			};
 		case actionTypes.COMPLETE_LEVEL:
-			return initialState;
+			return {
+				...state,
+				tiles: {},
+				inProgress: false,
+			};
 		case actionTypes.FAILED_LEVEL:
 			return initialState;
+		case actionTypes.UPDATE_TIMER:
+			return {
+				...state,
+				timer: state.timer + 1,
+			};
 		default:
 			return state;
 	}

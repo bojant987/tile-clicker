@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { ACTIVE, IDLE } from '../../Redux/constants/tileStatuses';
+import { openChoosePlayerModal } from '../../Redux/actions/choosePlayer';
 import buildLevel from '../../Redux/actions/buildLevel';
 import updateLevel from '../../Redux/actions/updateLevel';
-import { openChoosePlayerModal } from '../../Redux/actions/choosePlayer';
 
 export const _Tile = props => {
 	const {
@@ -15,7 +15,6 @@ export const _Tile = props => {
 		buildNextLvl,
 		updateLvl,
 		levelInProgress,
-		nextLevel,
 		levelNr,
 		levelTiles,
 		activePlayer,
@@ -33,10 +32,10 @@ export const _Tile = props => {
 
 		if (levelInProgress) {
 			if (status === ACTIVE || status === IDLE) {
-				updateLvl({ x: xPos, y: yPos, status }, levelNr, levelTiles);
+				updateLvl({ x: xPos, y: yPos, status }, levelNr, levelTiles, activePlayer.name);
 			}
 		} else {
-			buildNextLvl({ x: xPos, y: yPos }, nextLevel);
+			buildNextLvl({ x: xPos, y: yPos }, activePlayer.progress);
 		}
 	};
 
@@ -48,7 +47,6 @@ _Tile.propTypes = {
 	updateLvl: PropTypes.func.isRequired,
 	xPos: PropTypes.number.isRequired,
 	yPos: PropTypes.number.isRequired,
-	nextLevel: PropTypes.number.isRequired,
 	levelInProgress: PropTypes.bool.isRequired,
 	levelNr: PropTypes.number.isRequired,
 	levelTiles: PropTypes.object.isRequired,
@@ -68,13 +66,13 @@ const mapStateToProps = (state, ownProps) => ({
 	levelInProgress: state.currentLevel.inProgress,
 	levelNr: state.currentLevel.levelNr,
 	levelTiles: state.currentLevel.tiles,
-	nextLevel: state.nextLevel,
 	activePlayer: state.activePlayer,
 });
 
 const mapDispatchToProps = dispatch => ({
 	buildNextLvl: (pos, levelNr) => dispatch(buildLevel(pos, levelNr)),
-	updateLvl: (referenceTile, levelNr, levelTiles) => dispatch(updateLevel(referenceTile, levelNr, levelTiles)),
+	updateLvl: (referenceTile, levelNr, levelTiles, playerName) =>
+		dispatch(updateLevel(referenceTile, levelNr, levelTiles, playerName)),
 	openChoosePlayer: () => dispatch(openChoosePlayerModal()),
 });
 
