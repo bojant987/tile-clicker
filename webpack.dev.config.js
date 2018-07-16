@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.config.js');
 
-const VENDOR_LIBS = ['react', 'redux', 'redux-thunk', 'react-redux', 'react-dom', 'react-router', 'react-router-dom'];
+const VENDOR_LIBS = ['react', 'redux', 'redux-thunk', 'react-redux', 'react-dom', 'react-select', 'rodal'];
 
 const cssLoader = {
 	loader: 'css-loader',

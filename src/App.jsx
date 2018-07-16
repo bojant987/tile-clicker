@@ -3,11 +3,11 @@ import { Provider } from 'react-redux';
 
 import store from './Redux/store';
 
-import Routes from './Routes';
+import AppContainer from './Components/AppContainer';
 
 const App = () => (
 	<Provider store={store}>
-		<Routes />
+		<AppContainer />
 	</Provider>
 );
 
