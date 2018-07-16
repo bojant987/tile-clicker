@@ -9,6 +9,7 @@ const updateLevel = (referenceTile, levelNr, levelTiles, activePlayer) => dispat
 	if (referenceTile.status === IDLE) {
 		const remainingTiles = Object.values(levelTiles).filter(tile => tile.status === ACTIVE || tile.status === IDLE);
 
+		dispatch(stopTimer());
 		dispatch({
 			type: actionTypes.FAILED_LEVEL,
 			lives: remainingTiles.length,
@@ -41,12 +42,14 @@ const updateLevel = (referenceTile, levelNr, levelTiles, activePlayer) => dispat
 			type: actionTypes.COMPLETE_LEVEL,
 			levelNr,
 			playerName: activePlayer.name,
+			remainingTiles: 0,
 		});
 	} else {
-		dispatch(stopTimer());
 		dispatch({
 			type: actionTypes.UPDATE_LEVEL,
 			tiles: newTiles,
+			remainingTiles: Object.values(newTiles).filter(tile => tile.status === ACTIVE || tile.status === IDLE)
+				.length,
 		});
 	}
 };

@@ -40,6 +40,7 @@ const getNextTile = (pos, tiles, levelNr, dispatch, referencePos) => {
 			level: {
 				tiles,
 				levelNr,
+				remainingTiles: Object.keys(tiles).length - 1,
 			},
 		});
 	} else {

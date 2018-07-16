@@ -4,7 +4,7 @@
   "description": "Simple tile clicking game",
   "main": "index.jsx",
   "scripts": {
-    "test": "jest --colors",
+    "test": "jest --verbose --colors",
     "dev": "npm run clean && node --max_old_space_size=4096 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack.dev.config.js --progress --color --open",
     "clean": "rm -rf dist",
     "build": "npm run clean && webpack -p --config ./webpack.prod.config.js",

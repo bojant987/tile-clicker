@@ -83,7 +83,7 @@ describe('ChoosePlayer', () => {
 		component.unmount();
 	});
 
-	test('show pointer icon on active player', () => {
+	test('shows pointer icon on active player', () => {
 		const component = shallow(
 			<ChoosePlayer
 				{...compProps}

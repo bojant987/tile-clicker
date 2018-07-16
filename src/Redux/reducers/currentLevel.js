@@ -9,6 +9,9 @@ const initialState = {
 	inProgress: false,
 	levelNr: STARTING_LEVEL || initialLevel,
 	timer: 0,
+	levelSuccess: false,
+	levelFailure: false,
+	remainingTiles: 0,
 };
 
 export default function currentLevel(state = initialState, action) {
@@ -18,11 +21,14 @@ export default function currentLevel(state = initialState, action) {
 				...state,
 				...action.level,
 				inProgress: true,
+				levelSuccess: false,
+				levelFailure: false,
 			};
 		case actionTypes.UPDATE_LEVEL:
 			return {
 				...state,
 				tiles: action.tiles,
+				remainingTiles: action.remainingTiles,
 			};
 		case actionTypes.COMPLETE_LEVEL:
 			return {
@@ -30,6 +36,8 @@ export default function currentLevel(state = initialState, action) {
 				tiles: {},
 				levelNr: state.levelNr + 1,
 				inProgress: false,
+				levelSuccess: true,
+				remainingTiles: 0,
 			};
 		case actionTypes.FAILED_LEVEL:
 			return {
@@ -38,6 +46,7 @@ export default function currentLevel(state = initialState, action) {
 				tiles: {},
 				timer: 0,
 				inProgress: false,
+				levelFailure: true,
 			};
 		case actionTypes.UPDATE_TIMER:
 			return {
@@ -48,6 +57,11 @@ export default function currentLevel(state = initialState, action) {
 			return {
 				...state,
 				levelNr: action.level,
+				levelSuccess: false,
+				levelFailure: false,
+				tiles: {},
+				inProgress: false,
+				timer: 0,
 			};
 		case actionTypes.CHOOSE_PLAYER:
 			return {

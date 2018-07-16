@@ -5,3 +5,34 @@
 	max-width: 1000px;
 	padding: 40px 0;
 }
+
+.Game__status {
+	max-width: 500px;
+	border: 2px solid;
+	border-radius: 4px;
+
+	&--success {
+		border-color: $success;
+	}
+
+	&--failure {
+		border-color: $error;
+	}
+}
+
+.Game__statusIcon {
+	display: inline-block;
+	margin: 15px 0;
+	max-width: 120px;
+}
+
+.Game__statusLives {
+	display: inline-block;
+	background: url('../../../assets/img/heart-icon.svg') no-repeat 0 center;
+	background-size: 25px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 15px 0;
+}
