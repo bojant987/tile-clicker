@@ -36,7 +36,7 @@ export const calculateStatus = (referencePos, newTilePos) => {
 // so we don't want these two to log error pointlessly
 export const saveInStorage = (key, value) => {
 	try {
-		localStorage.setItem(key, value);
+		localStorage.setItem(key, JSON.stringify(value));
 	} catch (e) {}
 };
 
@@ -44,7 +44,7 @@ export const getFromStorage = key => {
 	let value;
 
 	try {
-		value = localStorage.getItem(key);
+		value = JSON.parse(localStorage.getItem(key));
 	} catch (e) {}
 
 	return value;

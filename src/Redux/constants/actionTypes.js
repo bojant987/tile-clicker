@@ -8,6 +8,7 @@ export default keyMirror({
 	FAILED_LEVEL: null,
 	UPDATE_TIMER: null,
 	STOP_TIMER: null,
+	CHOOSE_LEVEL: null,
 
 	/* PLAYER(S) */
 	CREATE_PLAYER: null,

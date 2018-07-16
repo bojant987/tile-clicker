@@ -1,8 +1,7 @@
 import actionTypes from '../constants/actionTypes';
 import { saveInStorage, getFromStorage } from '../util/util';
 
-const storagePlayers = getFromStorage('players');
-const initialState = storagePlayers ? JSON.parse(storagePlayers) : [];
+const initialState = getFromStorage('players') ? getFromStorage('players') : [];
 
 export default function players(state = initialState, action) {
 	switch (action.type) {
@@ -15,36 +14,38 @@ export default function players(state = initialState, action) {
 					lives: 1,
 				},
 			];
-			saveInStorage('players', JSON.stringify(newState));
+			saveInStorage('players', newState);
 
 			return newState;
 		}
 		case actionTypes.COMPLETE_LEVEL: {
 			// TODO: myb use reselect for active player instead???
 			const newState = state.map(player => {
+				const playerProgress = action.levelNr + 1 > player.progress ? action.levelNr + 1 : player.progress;
 				const updatedActivePlayer = {
 					...player,
 					lives: player.lives + 1,
-					progress: action.levelNr + 1,
+					progress: playerProgress,
 				};
 
 				return player.name === action.playerName ? updatedActivePlayer : player;
 			});
-			saveInStorage('players', JSON.stringify(newState));
+			saveInStorage('players', newState);
 
 			return newState;
 		}
 		case actionTypes.FAILED_LEVEL: {
 			const newState = state.map(player => {
+				const playerProgress = action.levelNr + 1 > player.progress ? action.levelNr + 1 : player.progress;
 				const updatedActivePlayer = {
 					...player,
 					lives: player.lives - action.lives,
-					progress: player.lives - action.lives < 1 ? 1 : action.levelNr,
+					progress: player.lives - action.lives < 1 ? 1 : playerProgress,
 				};
 
 				return player.name === action.playerName ? updatedActivePlayer : player;
 			});
-			saveInStorage('players', JSON.stringify(newState));
+			saveInStorage('players', newState);
 
 			return newState;
 		}

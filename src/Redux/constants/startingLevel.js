@@ -1,3 +1,3 @@
-const STARTING_LEVEL = 1;
+const STARTING_LEVEL = null;
 
 export default STARTING_LEVEL;

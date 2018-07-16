@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { ACTIVE, IDLE } from '../../Redux/constants/tileStatuses';
 
-const GameStats = ({ timer, remainingTiles, activePlayer }) => (
+const GameStats = ({ timer, remainingTiles, lives, level }) => (
 	<div className="GameStats">
 		<div className="GameStats__timer h-paddingL--xxl" title="Time elapsed">
 			{timer}
@@ -13,10 +13,10 @@ const GameStats = ({ timer, remainingTiles, activePlayer }) => (
 			{remainingTiles}
 		</div>
 		<div className="GameStats__lives h-paddingL--xxl" title="Lives">
-			{activePlayer.lives}
+			{lives}
 		</div>
 		<div className="GameStats__level h-paddingL--xxl" title="Level">
-			{activePlayer.progress}
+			{level}
 		</div>
 	</div>
 );
@@ -24,14 +24,13 @@ const GameStats = ({ timer, remainingTiles, activePlayer }) => (
 GameStats.propTypes = {
 	timer: PropTypes.number.isRequired,
 	remainingTiles: PropTypes.number.isRequired,
-	activePlayer: PropTypes.shape({
-		lives: PropTypes.number.isRequired,
-		progress: PropTypes.number.isRequired,
-	}).isRequired,
+	lives: PropTypes.number.isRequired,
+	level: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({
-	activePlayer: state.activePlayer,
+	lives: state.activePlayer.lives,
+	level: state.currentLevel.levelNr,
 	timer: state.currentLevel.timer,
 	remainingTiles: Object.values(state.currentLevel.tiles).filter(
 		tile => tile.status === ACTIVE || tile.status === IDLE

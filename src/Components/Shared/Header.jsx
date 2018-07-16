@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Rodal from 'rodal';
 
 import ChoosePlayer from '../ChoosePlayer/ChoosePlayer';
+import ChooseLevel from '../ChooseLevel/ChooseLevel';
 import { openChoosePlayerModal, closeChoosePlayerModal } from '../../Redux/actions/choosePlayer';
 
 const customModalStyles = {
@@ -12,7 +13,7 @@ const customModalStyles = {
 	height: 'fit-content',
 	top: '50%',
 	bottom: '50%',
-	paddingTop: '40px',
+	paddingTop: '60px',
 };
 
 class Header extends Component {
@@ -91,11 +92,14 @@ class Header extends Component {
 
 				{isChooseLevelModalOpen ? (
 					<Rodal
-						customStyles={customModalStyles}
+						customStyles={{
+							...customModalStyles,
+							maxWidth: '400px',
+						}}
 						visible={isChooseLevelModalOpen}
 						onClose={this.closeChooseLevelModal}
 					>
-						<div>Choose a level</div>
+						<ChooseLevel closeChooseLevelModal={this.closeChooseLevelModal} />
 					</Rodal>
 				) : null}
 

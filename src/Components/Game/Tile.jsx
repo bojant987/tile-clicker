@@ -32,10 +32,10 @@ export const _Tile = props => {
 
 		if (levelInProgress) {
 			if (status === ACTIVE || status === IDLE) {
-				updateLvl({ x: xPos, y: yPos, status }, levelNr, levelTiles, activePlayer.name);
+				updateLvl({ x: xPos, y: yPos, status }, levelNr, levelTiles, activePlayer);
 			}
 		} else {
-			buildNextLvl({ x: xPos, y: yPos }, activePlayer.progress);
+			buildNextLvl({ x: xPos, y: yPos }, levelNr);
 		}
 	};
 
@@ -71,8 +71,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
 	buildNextLvl: (pos, levelNr) => dispatch(buildLevel(pos, levelNr)),
-	updateLvl: (referenceTile, levelNr, levelTiles, playerName) =>
-		dispatch(updateLevel(referenceTile, levelNr, levelTiles, playerName)),
+	updateLvl: (referenceTile, levelNr, levelTiles, activePlayer) =>
+		dispatch(updateLevel(referenceTile, levelNr, levelTiles, activePlayer)),
 	openChoosePlayer: () => dispatch(openChoosePlayerModal()),
 });
 
