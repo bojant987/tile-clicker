@@ -7,7 +7,7 @@ import getActivePlayer from '../../Redux/selectors/activePlayer';
 const GameStats = ({ timer, remainingTiles, lives, level }) => (
 	<div className="GameStats">
 		<div className="GameStats__timer h-paddingL--xxl" title="Time elapsed">
-			{timer}
+			{Math.round(timer / 1000)}
 		</div>
 		<div className="GameStats__remaining h-paddingL--xxl" title="Remaining moves">
 			{remainingTiles}

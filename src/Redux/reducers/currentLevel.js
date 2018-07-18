@@ -52,7 +52,7 @@ export default function currentLevel(state = initialState, action) {
 		case actionTypes.UPDATE_TIMER:
 			return {
 				...state,
-				timer: state.timer + 1,
+				timer: state.timer + action.increment,
 			};
 		case actionTypes.CHOOSE_LEVEL:
 			return {

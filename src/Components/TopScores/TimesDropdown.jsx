@@ -35,7 +35,7 @@ export default class TimesDropdown extends Component {
 						onClick={() => showChart(times[0].scoreId)}
 						title="Open score chart"
 					/>
-					{`${times[0].value} sec`}
+					{`${(times[0].value / 1000).toFixed(1)} sec`}
 					{times.length > 1 ? (
 						<span
 							onClick={this.toggleDropdown}
@@ -54,7 +54,7 @@ export default class TimesDropdown extends Component {
 										onClick={() => showChart(time.scoreId)}
 										title="Open score chart"
 									/>
-									{`${time.value} sec`}
+									{`${(time.value / 1000).toFixed(1)} sec`}
 								</span>
 							);
 					  })

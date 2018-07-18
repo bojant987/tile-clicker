@@ -9,13 +9,13 @@ export default function topScores(state = initialState, action) {
 			// TODO: this thing is a mess
 			const currentScore = state.find(score => score.id === action.scoreId)
 				? { ...state.find(score => score.id === action.scoreId) }
-				: {};
-			const scoreMoves = currentScore.moves ? currentScore.moves : [];
+				: { levelTime: 0 };
+			const scoreMoves = currentScore.moves ? currentScore.moves : [{ move: 0, time: 0 }];
 			const moveBefore = [...scoreMoves].pop();
 
 			scoreMoves.push({
 				time: moveBefore ? action.timer - currentScore.levelTime : action.timer,
-				move: scoreMoves.length + 1,
+				move: scoreMoves.length,
 			});
 
 			currentScore.levelTime = action.timer;

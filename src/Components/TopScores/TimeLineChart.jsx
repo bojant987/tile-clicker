@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 
 import { scoreById } from '../../Redux/selectors/topScores';
 
-const TimeLineChart = ({ score }) => {
+export const _TimeLineChart = ({ score }) => {
 	if (!score.id) return null;
 
 	const { moves } = score;
 	// get max number from all move times
-	const maxMoveTime = Math.max(...moves.map(move => move.time)) + 1;
+	const maxMoveTime = Math.round(Math.max(...moves.map(move => move.time)) / 1000) + 1;
+
 	const timeValues = [...Array(maxMoveTime).keys()];
 
 	// a couple of constants
@@ -35,7 +36,9 @@ const TimeLineChart = ({ score }) => {
 	const calculateYPoints = time => chartHeight - time * yPointsDensity - labelSpacing;
 
 	const calculatePoints = () =>
-		moves.map(({ move, time }) => `${calculateXPoints(move)},${calculateYPoints(time)}`).join(' ');
+		moves
+			.map(({ move, time }) => `${calculateXPoints(move)},${calculateYPoints((time / 1000).toFixed(1))}`)
+			.join(' ');
 
 	return (
 		<div className="TimeLineChart">
@@ -84,18 +87,26 @@ const TimeLineChart = ({ score }) => {
 				<polyline fill="none" stroke="#0074d9" strokeWidth="2" points={calculatePoints()} />
 
 				<g className="TimeLineChart__dots">
-					{moves.map(({ move, time }, index) => (
-						<circle key={index} cx={calculateXPoints(move)} cy={calculateYPoints(time)} r="6">
-							<title>{`move ${move} - ${time} seconds`}</title>
-						</circle>
-					))}
+					{moves.map(
+						({ move, time }, index) =>
+							move !== 0 ? (
+								<circle
+									key={index}
+									cx={calculateXPoints(move)}
+									cy={calculateYPoints((time / 1000).toFixed(1))}
+									r="6"
+								>
+									<title>{`move ${move} - ${(time / 1000).toFixed(1)} seconds`}</title>
+								</circle>
+							) : null
+					)}
 				</g>
 			</svg>
 		</div>
 	);
 };
 
-TimeLineChart.propTypes = {
+_TimeLineChart.propTypes = {
 	score: PropTypes.object.isRequired,
 };
 
@@ -103,4 +114,4 @@ const mapStateToProps = state => ({
 	score: scoreById(state),
 });
 
-export default connect(mapStateToProps)(TimeLineChart);
+export default connect(mapStateToProps)(_TimeLineChart);

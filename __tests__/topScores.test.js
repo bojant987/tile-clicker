@@ -19,7 +19,7 @@ describe('topScores reducer', () => {
 				level: 1,
 				id: 0,
 				completed: true,
-				moves: [{ move: 1, time: 1 }],
+				moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }],
 			},
 		]);
 	});
@@ -34,7 +34,7 @@ describe('topScores reducer', () => {
 						level: 1,
 						id: 0,
 						completed: true,
-						moves: [{ move: 1, time: 1 }],
+						moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }],
 					},
 				],
 				{
@@ -53,7 +53,7 @@ describe('topScores reducer', () => {
 				level: 1,
 				id: 0,
 				completed: true,
-				moves: [{ move: 1, time: 1 }],
+				moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }],
 			},
 			{
 				levelTime: 2,
@@ -61,7 +61,7 @@ describe('topScores reducer', () => {
 				level: 1,
 				id: 1,
 				completed: true,
-				moves: [{ move: 1, time: 2 }],
+				moves: [{ move: 0, time: 0 }, { move: 1, time: 2 }],
 			},
 		]);
 	});
@@ -76,7 +76,7 @@ describe('topScores reducer', () => {
 						level: 1,
 						id: 0,
 						completed: true,
-						moves: [{ move: 1, time: 1 }],
+						moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }],
 					},
 				],
 				{
@@ -95,7 +95,7 @@ describe('topScores reducer', () => {
 				level: 1,
 				id: 0,
 				completed: true,
-				moves: [{ move: 1, time: 1 }],
+				moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }],
 			},
 			{
 				levelTime: 1,
@@ -103,7 +103,7 @@ describe('topScores reducer', () => {
 				level: 2,
 				id: 1,
 				completed: false,
-				moves: [{ move: 1, time: 1 }],
+				moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }],
 			},
 		]);
 	});
@@ -118,7 +118,7 @@ describe('topScores reducer', () => {
 						level: 1,
 						id: 0,
 						completed: true,
-						moves: [{ move: 1, time: 1 }],
+						moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }],
 					},
 					{
 						levelTime: 1,
@@ -126,7 +126,7 @@ describe('topScores reducer', () => {
 						level: 2,
 						id: 1,
 						completed: false,
-						moves: [{ move: 1, time: 1 }],
+						moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }],
 					},
 				],
 				{
@@ -145,7 +145,7 @@ describe('topScores reducer', () => {
 				level: 1,
 				id: 0,
 				completed: true,
-				moves: [{ move: 1, time: 1 }],
+				moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }],
 			},
 			{
 				levelTime: 3,
@@ -153,7 +153,7 @@ describe('topScores reducer', () => {
 				level: 2,
 				id: 1,
 				completed: true,
-				moves: [{ move: 1, time: 1 }, { move: 2, time: 2 }],
+				moves: [{ move: 0, time: 0 }, { move: 1, time: 1 }, { move: 2, time: 2 }],
 			},
 		]);
 	});

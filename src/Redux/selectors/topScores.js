@@ -15,7 +15,7 @@ export const displayScores = scores => {
 					scoreId: score.id,
 				});
 			});
-			times.sort((a, b) => parseInt(a.value) - parseInt(b.value));
+			times.sort((a, b) => parseFloat(a.value) - parseFloat(b.value));
 
 			return {
 				level: arr[0].level,
