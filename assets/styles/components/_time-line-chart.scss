@@ -1,0 +1,45 @@
+@import "../base/variables";
+
+.TimeLineChart {
+	margin-top: 60px;
+	margin-bottom: 40px;
+	padding: 40px;
+	overflow-x: auto;
+	width: 100%;
+	background-color: $passiveSoft;
+	border: 2px solid $active;
+	border-radius: 4px;
+}
+
+.TimeLineChart__chart {
+	overflow: visible;
+	background-color: $passiveSoft;
+}
+
+.TimeLineChart__xLabels {
+	font-size: 15px;
+	text-anchor: middle;
+}
+
+.TimeLineChart__yLabels {
+	font-size: 15px;
+	text-anchor: start;
+}
+
+.TimeLineChart__axis {
+	stroke: $dark;
+	stroke-dasharray: 0;
+	stroke-width: 1;
+}
+
+.TimeLineChart__labelTitle {
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 16px;
+	fill: black;
+}
+
+.TimeLineChart__dots {
+	fill: $error;
+	stroke-width: 1;
+}

@@ -26,6 +26,7 @@ export default function players(state = initialState, action) {
 					lives: player.lives + 1,
 					progress: playerProgress,
 				};
+				saveInStorage('activePlayer', updatedActivePlayer);
 
 				return player.name === action.playerName ? updatedActivePlayer : player;
 			});
@@ -40,6 +41,7 @@ export default function players(state = initialState, action) {
 					lives: player.lives - action.lives,
 					progress: player.lives - action.lives < 1 ? 1 : player.progress,
 				};
+				saveInStorage('activePlayer', updatedActivePlayer);
 
 				return player.name === action.playerName ? updatedActivePlayer : player;
 			});
@@ -53,6 +55,7 @@ export default function players(state = initialState, action) {
 					...player,
 					lives: player.lives < 1 ? 1 : player.lives,
 				};
+				saveInStorage('activePlayer', updatedActivePlayer);
 
 				return player.name === action.playerName ? updatedActivePlayer : player;
 			});

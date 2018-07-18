@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 export default class TimesDropdown extends Component {
 	static propTypes = {
 		times: PropTypes.array.isRequired,
+		showChart: PropTypes.func.isRequired,
 	};
 
 	constructor(props) {
@@ -22,16 +23,24 @@ export default class TimesDropdown extends Component {
 	};
 
 	render() {
-		const { times } = this.props;
+		const { times, showChart } = this.props;
 		const { expanded } = this.state;
 		const buttonClassNameModifier = expanded ? 'expanded' : 'collapsed';
 
 		return (
 			<div className="TimesDropdown">
-				<span className="TimesDropdown__item" onClick={this.toggleDropdown}>
-					{`${times[0]} sec`}
+				<span className="TimesDropdown__item">
+					<span
+						className="TimesDropdown__chartButton"
+						onClick={() => showChart(times[0].scoreId)}
+						title="Open score chart"
+					/>
+					{`${times[0].value} sec`}
 					{times.length > 1 ? (
-						<span className={`TimesDropdown__button TimesDropdown__button--${buttonClassNameModifier}`} />
+						<span
+							onClick={this.toggleDropdown}
+							className={`TimesDropdown__button TimesDropdown__button--${buttonClassNameModifier}`}
+						/>
 					) : null}
 				</span>
 				{expanded
@@ -40,7 +49,12 @@ export default class TimesDropdown extends Component {
 
 							return (
 								<span key={index} className="TimesDropdown__item">
-									{`${time} sec`}
+									<span
+										className="TimesDropdown__chartButton"
+										onClick={() => showChart(time.scoreId)}
+										title="Open score chart"
+									/>
+									{`${time.value} sec`}
 								</span>
 							);
 					  })

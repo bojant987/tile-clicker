@@ -101,13 +101,13 @@ describe('topScores selectors', () => {
 				level: 4,
 				playerName: 'Bojan',
 				timesCompleted: 2,
-				times: [8, 14],
+				times: [{ value: 8, scoreId: 3 }, { value: 14, scoreId: 1 }],
 			},
 			{
 				level: 3,
 				playerName: 'Bojan',
 				timesCompleted: 2,
-				times: [10, 12],
+				times: [{ value: 10, scoreId: 2 }, { value: 12, scoreId: 0 }],
 			},
 		]);
 	});

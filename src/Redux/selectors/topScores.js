@@ -10,9 +10,12 @@ export const displayScores = scores => {
 		.map(arr => {
 			const times = [];
 			arr.forEach(score => {
-				times.push(score.levelTime);
+				times.push({
+					value: score.levelTime,
+					scoreId: score.id,
+				});
 			});
-			times.sort((a, b) => parseInt(a) - parseInt(b));
+			times.sort((a, b) => parseInt(a.value) - parseInt(b.value));
 
 			return {
 				level: arr[0].level,
@@ -23,3 +26,5 @@ export const displayScores = scores => {
 		})
 		.sort((a, b) => parseInt(b.level) - parseInt(a.level));
 };
+
+export const scoreById = state => state.topScores.find(score => score.id === state.openedChart) || {};

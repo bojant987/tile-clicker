@@ -79,7 +79,7 @@ const mapStateToProps = (state, ownProps) => ({
 	levelNr: state.currentLevel.levelNr,
 	levelTiles: state.currentLevel.tiles,
 	timer: state.currentLevel.timer,
-	scoreId: state.topScores.filter(score => score.completed).length,
+	scoreId: state.topScores.filter(score => score.completed).length + 1,
 	activePlayer: getActivePlayer(state),
 });
 

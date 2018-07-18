@@ -11,6 +11,8 @@ import { openChoosePlayerModal, closeChoosePlayerModal } from '../../Redux/actio
 const customModalStyles = {
 	width: '94%',
 	maxWidth: '1200px',
+	maxHeight: '90%',
+	overflowY: 'auto',
 	height: 'fit-content',
 	top: '50%',
 	bottom: '50%',
@@ -95,7 +97,8 @@ class Header extends Component {
 					<Rodal
 						customStyles={{
 							...customModalStyles,
-							maxWidth: '400px',
+							maxWidth: '500px',
+							overflow: 'visible',
 						}}
 						visible={isChooseLevelModalOpen}
 						onClose={this.closeChooseLevelModal}

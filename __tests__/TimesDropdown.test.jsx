@@ -5,7 +5,7 @@ import TimesDropdown from '../src/Components/TopScores/TimesDropdown';
 
 describe('TimesDropdown', () => {
 	const compProps = {
-		times: [1],
+		times: [{ value: 1, scoreId: 0 }],
 	};
 
 	test("doesn't show expander button if there's only 1 time", () => {
@@ -25,7 +25,12 @@ describe('TimesDropdown', () => {
 	});
 
 	test("doesn't duplicate first time when expanded", () => {
-		const component = shallow(<TimesDropdown {...compProps} times={[0, 1, 5]} />);
+		const component = shallow(
+			<TimesDropdown
+				{...compProps}
+				times={[{ value: 1, scoreId: 0 }, { value: 5, scoreId: 1 }, { value: 3, scoreId: 2 }]}
+			/>
+		);
 
 		component.setState({ expanded: true });
 

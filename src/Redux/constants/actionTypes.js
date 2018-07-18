@@ -21,4 +21,5 @@ export default keyMirror({
 	/* SCORE(s) */
 	UPDATE_SCORE: null,
 	REVOKE_SCORE: null,
+	OPEN_CHART: null,
 });

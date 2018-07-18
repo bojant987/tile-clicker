@@ -1,9 +1,5 @@
 @import "../base/variables";
 
-.TimesDropdown {
-
-}
-
 .TimesDropdown__button {
 	position: absolute;
 	right: -12px;
@@ -32,4 +28,20 @@
 	position: relative;
 	display: block;
 	padding: 4px;
+}
+
+.TimesDropdown__chartButton {
+	position: absolute;
+	left: -12px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+	background: url('../../../assets/img/chart.svg') no-repeat center center;
+	background-size: 15px;
+
+	@media(min-width: $phablet) {
+		left: 0;
+	}
 }

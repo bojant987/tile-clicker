@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { playerScores, displayScores } from '../../Redux/selectors/topScores';
+import openChart from '../../Redux/actions/openChart';
 import Score from './Score';
+import TimeLineChart from './TimeLineChart';
 
-const TopScores = ({ playerName, topScores }) =>
+const TopScores = ({ playerName, topScores, showChart }) =>
 	topScores.length > 0 ? (
 		<div className="TopScores">
 			<h2 className="h-marginB--xxl">{`${playerName}'s`} top scores</h2>
@@ -18,9 +20,10 @@ const TopScores = ({ playerName, topScores }) =>
 					</tr>
 				</thead>
 				<tbody className="TopScores__tbody">
-					{topScores.map(score => <Score score={score} key={score.level} />)}
+					{topScores.map(score => <Score score={score} key={score.level} showChart={showChart} />)}
 				</tbody>
 			</table>
+			<TimeLineChart />
 		</div>
 	) : (
 		<h4 className="h-textCenter h-paddingALL--xxl">You have to click a bit first, {playerName}.</h4>
@@ -29,6 +32,7 @@ const TopScores = ({ playerName, topScores }) =>
 TopScores.propTypes = {
 	topScores: PropTypes.array.isRequired,
 	playerName: PropTypes.string,
+	showChart: PropTypes.func.isRequired,
 };
 
 TopScores.defaultProps = {
@@ -44,4 +48,11 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(TopScores);
+const mapDispatchToProps = dispatch => ({
+	showChart: scoreId => dispatch(openChart(scoreId)),
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(TopScores);
