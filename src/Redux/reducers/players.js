@@ -19,7 +19,6 @@ export default function players(state = initialState, action) {
 			return newState;
 		}
 		case actionTypes.COMPLETE_LEVEL: {
-			// TODO: myb use reselect for active player instead???
 			const newState = state.map(player => {
 				const playerProgress = action.levelNr + 1 > player.progress ? action.levelNr + 1 : player.progress;
 				const updatedActivePlayer = {

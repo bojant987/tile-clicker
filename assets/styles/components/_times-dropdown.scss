@@ -1,0 +1,35 @@
+@import "../base/variables";
+
+.TimesDropdown {
+
+}
+
+.TimesDropdown__button {
+	position: absolute;
+	right: -12px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 12px;
+	height: 12px;
+	cursor: pointer;
+
+	@media(min-width: $phablet) {
+		right: 0;
+	}
+
+	&--collapsed {
+		background: url('../../../assets/img/plus.svg') no-repeat center center;
+		background-size: 12px;
+	}
+
+	&--expanded {
+		background: url('../../../assets/img/minus.svg') no-repeat center center;
+		background-size: 12px;
+	}
+}
+
+.TimesDropdown__item {
+	position: relative;
+	display: block;
+	padding: 4px;
+}

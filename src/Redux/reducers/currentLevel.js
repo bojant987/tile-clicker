@@ -38,6 +38,7 @@ export default function currentLevel(state = initialState, action) {
 				inProgress: false,
 				levelSuccess: true,
 				remainingTiles: 0,
+				timer: 0,
 			};
 		case actionTypes.FAILED_LEVEL:
 			return {

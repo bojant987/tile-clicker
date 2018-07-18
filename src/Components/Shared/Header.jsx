@@ -5,6 +5,7 @@ import Rodal from 'rodal';
 
 import ChoosePlayer from '../ChoosePlayer/ChoosePlayer';
 import ChooseLevel from '../ChooseLevel/ChooseLevel';
+import TopScores from '../TopScores/TopScores';
 import { openChoosePlayerModal, closeChoosePlayerModal } from '../../Redux/actions/choosePlayer';
 
 const customModalStyles = {
@@ -109,7 +110,7 @@ class Header extends Component {
 						visible={isTopScoresModalOpen}
 						onClose={this.closeTopScoresModal}
 					>
-						<div>Top scores</div>
+						<TopScores />
 					</Rodal>
 				) : null}
 			</div>

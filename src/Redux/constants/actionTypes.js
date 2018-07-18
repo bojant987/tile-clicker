@@ -17,4 +17,8 @@ export default keyMirror({
 	/* CHOOSE PLAYER MODAL */
 	OPEN_CHOOSE_PLAYER_MODAL: null,
 	CLOSE_CHOOSE_PLAYER_MODAL: null,
+
+	/* SCORE(s) */
+	UPDATE_SCORE: null,
+	REVOKE_SCORE: null,
 });

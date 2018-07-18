@@ -19,6 +19,8 @@ export const _Tile = props => {
 		levelTiles,
 		activePlayer,
 		openChoosePlayer,
+		timer,
+		scoreId,
 	} = props;
 
 	const calculateStatusClassName = () => (status ? `Board__tile--${status}` : '');
@@ -32,7 +34,7 @@ export const _Tile = props => {
 
 		if (levelInProgress) {
 			if (status === ACTIVE || status === IDLE) {
-				updateLvl({ x: xPos, y: yPos, status }, levelNr, levelTiles, activePlayer);
+				updateLvl({ x: xPos, y: yPos, status }, levelNr, levelTiles, activePlayer, timer, scoreId);
 			}
 		} else {
 			buildNextLvl({ x: xPos, y: yPos }, levelNr);
@@ -53,6 +55,8 @@ _Tile.propTypes = {
 	activePlayer: PropTypes.object.isRequired,
 	openChoosePlayer: PropTypes.func.isRequired,
 	status: PropTypes.string,
+	timer: PropTypes.number.isRequired,
+	scoreId: PropTypes.any.isRequired,
 };
 
 _Tile.defaultProps = {
@@ -66,13 +70,15 @@ const mapStateToProps = (state, ownProps) => ({
 	levelInProgress: state.currentLevel.inProgress,
 	levelNr: state.currentLevel.levelNr,
 	levelTiles: state.currentLevel.tiles,
+	timer: state.currentLevel.timer,
+	scoreId: state.topScores.filter(score => score.completed).length,
 	activePlayer: state.activePlayer,
 });
 
 const mapDispatchToProps = dispatch => ({
 	buildNextLvl: (pos, levelNr) => dispatch(buildLevel(pos, levelNr)),
-	updateLvl: (referenceTile, levelNr, levelTiles, activePlayer) =>
-		dispatch(updateLevel(referenceTile, levelNr, levelTiles, activePlayer)),
+	updateLvl: (referenceTile, levelNr, levelTiles, activePlayer, timer, scoreId) =>
+		dispatch(updateLevel(referenceTile, levelNr, levelTiles, activePlayer, timer, scoreId)),
 	openChoosePlayer: () => dispatch(openChoosePlayerModal()),
 });
 

@@ -27,8 +27,17 @@ export default function activePlayer(state = initialState, action) {
 		case actionTypes.FAILED_LEVEL: {
 			const newState = {
 				...state,
-				lives: state.lives - action.lives < 1 ? 0 : state.lives - action.lives,
+				lives: state.lives - action.lives,
 				progress: state.lives - action.lives < 1 ? 1 : state.progress,
+			};
+			saveInStorage('activePlayer', newState);
+
+			return newState;
+		}
+		case actionTypes.BUILD_LEVEL: {
+			const newState = {
+				...state,
+				lives: state.lives < 1 ? 1 : state.lives,
 			};
 			saveInStorage('activePlayer', newState);
 

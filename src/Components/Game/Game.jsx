@@ -22,7 +22,7 @@ export class _Game extends Component {
 	static propTypes = {
 		levelSuccess: PropTypes.bool.isRequired,
 		levelFailure: PropTypes.bool.isRequired,
-		timesClicked: PropTypes.number.isRequired,
+		levelNr: PropTypes.number.isRequired,
 		remainingTiles: PropTypes.number.isRequired,
 		remainingLives: PropTypes.number.isRequired,
 	};
@@ -65,7 +65,7 @@ export class _Game extends Component {
 	};
 
 	render() {
-		const { timesClicked, remainingTiles, remainingLives } = this.props;
+		const { levelNr, remainingTiles, remainingLives } = this.props;
 		const { isSuccessModalOpen, isFailureModalOpen } = this.state;
 
 		return (
@@ -85,7 +85,7 @@ export class _Game extends Component {
 								src="../../../assets/img/success-flag.svg"
 								alt="Success"
 							/>
-							<h4 className="h-marginB--md">You did it! You clicked {timesClicked} times!</h4>
+							<h4 className="h-marginB--md">You did it! You clicked {levelNr} times!</h4>
 							<span className="Game__statusLives h-paddingL--xxl">+1</span>
 						</div>
 					</Rodal>
@@ -122,12 +122,9 @@ export class _Game extends Component {
 const mapStateToProps = state => ({
 	levelSuccess: state.currentLevel.levelSuccess,
 	levelFailure: state.currentLevel.levelFailure,
-	timesClicked: state.currentLevel.levelNr,
+	levelNr: state.currentLevel.levelNr,
 	remainingTiles: state.currentLevel.remainingTiles,
 	remainingLives: state.activePlayer.lives,
 });
 
-export default connect(
-	mapStateToProps,
-	null
-)(_Game);
+export default connect(mapStateToProps)(_Game);
