@@ -1,5 +1,6 @@
 import actionTypes from '../constants/actionTypes';
 import { saveInStorage, getFromStorage } from '../util/util';
+import STARTING_LEVEL from '../constants/startingLevel';
 
 const initialState = getFromStorage('players') ? getFromStorage('players') : [];
 
@@ -10,7 +11,7 @@ export default function players(state = initialState, action) {
 				...state,
 				{
 					name: action.name,
-					progress: 1,
+					progress: STARTING_LEVEL,
 					lives: 1,
 				},
 			];
@@ -24,7 +25,7 @@ export default function players(state = initialState, action) {
 				const updatedActivePlayer = {
 					...player,
 					lives: player.lives + 1,
-					progress: playerProgress,
+					progress: STARTING_LEVEL > playerProgress ? STARTING_LEVEL : playerProgress,
 				};
 				saveInStorage('activePlayer', updatedActivePlayer);
 
@@ -39,7 +40,7 @@ export default function players(state = initialState, action) {
 				const updatedActivePlayer = {
 					...player,
 					lives: player.lives - action.lives,
-					progress: player.lives - action.lives < 1 ? 1 : player.progress,
+					progress: player.lives - action.lives < 1 ? STARTING_LEVEL : player.progress,
 				};
 				saveInStorage('activePlayer', updatedActivePlayer);
 

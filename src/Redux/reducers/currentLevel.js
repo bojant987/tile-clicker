@@ -2,12 +2,12 @@ import actionTypes from '../constants/actionTypes';
 import STARTING_LEVEL from '../constants/startingLevel';
 import { getFromStorage } from '../util/util';
 
-const initialLevel = getFromStorage('activePlayer') ? getFromStorage('activePlayer').progress : 1;
+const initialLevel = getFromStorage('activePlayer') ? getFromStorage('activePlayer').progress : STARTING_LEVEL;
 
 const initialState = {
 	tiles: {},
 	inProgress: false,
-	levelNr: STARTING_LEVEL || initialLevel,
+	levelNr: initialLevel,
 	timer: 0,
 	levelSuccess: false,
 	levelFailure: false,
@@ -43,7 +43,7 @@ export default function currentLevel(state = initialState, action) {
 		case actionTypes.FAILED_LEVEL:
 			return {
 				...state,
-				levelNr: action.activePlayer.lives - action.lives < 1 ? 1 || STARTING_LEVEL : state.levelNr,
+				levelNr: action.activePlayer.lives - action.lives < 1 ? STARTING_LEVEL : state.levelNr,
 				tiles: {},
 				timer: 0,
 				inProgress: false,
