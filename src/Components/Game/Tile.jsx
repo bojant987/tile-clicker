@@ -6,6 +6,7 @@ import { ACTIVE, IDLE } from '../../Redux/constants/tileStatuses';
 import { openChoosePlayerModal } from '../../Redux/actions/choosePlayer';
 import buildLevel from '../../Redux/actions/buildLevel';
 import updateLevel from '../../Redux/actions/updateLevel';
+import getActivePlayer from '../../Redux/selectors/activePlayer';
 
 export const _Tile = props => {
 	const {
@@ -34,10 +35,17 @@ export const _Tile = props => {
 
 		if (levelInProgress) {
 			if (status === ACTIVE || status === IDLE) {
-				updateLvl({ x: xPos, y: yPos, status }, levelNr, levelTiles, activePlayer, timer, scoreId);
+				updateLvl({
+					referenceTile: { x: xPos, y: yPos, status },
+					levelNr,
+					levelTiles,
+					activePlayer,
+					timer,
+					scoreId,
+				});
 			}
 		} else {
-			buildNextLvl({ x: xPos, y: yPos }, levelNr);
+			buildNextLvl({ x: xPos, y: yPos }, levelNr, activePlayer.name);
 		}
 	};
 
@@ -72,13 +80,12 @@ const mapStateToProps = (state, ownProps) => ({
 	levelTiles: state.currentLevel.tiles,
 	timer: state.currentLevel.timer,
 	scoreId: state.topScores.filter(score => score.completed).length,
-	activePlayer: state.activePlayer,
+	activePlayer: getActivePlayer(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-	buildNextLvl: (pos, levelNr) => dispatch(buildLevel(pos, levelNr)),
-	updateLvl: (referenceTile, levelNr, levelTiles, activePlayer, timer, scoreId) =>
-		dispatch(updateLevel(referenceTile, levelNr, levelTiles, activePlayer, timer, scoreId)),
+	buildNextLvl: (pos, levelNr, playerName) => dispatch(buildLevel(pos, levelNr, playerName)),
+	updateLvl: params => dispatch(updateLevel(params)),
 	openChoosePlayer: () => dispatch(openChoosePlayerModal()),
 });
 

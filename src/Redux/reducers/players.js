@@ -35,11 +35,23 @@ export default function players(state = initialState, action) {
 		}
 		case actionTypes.FAILED_LEVEL: {
 			const newState = state.map(player => {
-				const playerProgress = action.levelNr + 1 > player.progress ? action.levelNr + 1 : player.progress;
 				const updatedActivePlayer = {
 					...player,
 					lives: player.lives - action.lives,
-					progress: player.lives - action.lives < 1 ? 1 : playerProgress,
+					progress: player.lives - action.lives < 1 ? 1 : player.progress,
+				};
+
+				return player.name === action.playerName ? updatedActivePlayer : player;
+			});
+			saveInStorage('players', newState);
+
+			return newState;
+		}
+		case actionTypes.BUILD_LEVEL: {
+			const newState = state.map(player => {
+				const updatedActivePlayer = {
+					...player,
+					lives: player.lives < 1 ? 1 : player.lives,
 				};
 
 				return player.name === action.playerName ? updatedActivePlayer : player;

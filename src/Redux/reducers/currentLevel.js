@@ -67,7 +67,7 @@ export default function currentLevel(state = initialState, action) {
 		case actionTypes.CHOOSE_PLAYER:
 			return {
 				...state,
-				levelNr: action.player.progress,
+				levelNr: action.progress,
 			};
 		default:
 			return state;

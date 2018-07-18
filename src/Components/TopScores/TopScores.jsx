@@ -36,11 +36,11 @@ TopScores.defaultProps = {
 };
 
 const mapStateToProps = state => {
-	const scoresByPlayer = playerScores(state, state.activePlayer.name);
+	const scoresByPlayer = playerScores(state, state.activePlayerName);
 
 	return {
 		topScores: displayScores(scoresByPlayer),
-		playerName: state.activePlayer.name,
+		playerName: state.activePlayerName,
 	};
 };
 

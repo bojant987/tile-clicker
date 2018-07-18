@@ -5,6 +5,7 @@ import Select from 'react-select';
 
 import ALL_LEVELS from '../../Redux/constants/levels';
 import chooseLevel from '../../Redux/actions/chooseLevel';
+import getActivePlayer from '../../Redux/selectors/activePlayer';
 
 class ChooseLevel extends Component {
 	static propTypes = {
@@ -56,7 +57,7 @@ class ChooseLevel extends Component {
 }
 
 const mapStateToProps = state => ({
-	progress: state.activePlayer.progress,
+	progress: getActivePlayer(state).progress,
 });
 
 const mapDispatchToProps = dispatch => ({

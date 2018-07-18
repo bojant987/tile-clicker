@@ -12,7 +12,7 @@ export const displayScores = scores => {
 			arr.forEach(score => {
 				times.push(score.levelTime);
 			});
-			times.sort();
+			times.sort((a, b) => parseInt(a) - parseInt(b));
 
 			return {
 				level: arr[0].level,
@@ -21,5 +21,5 @@ export const displayScores = scores => {
 				times,
 			};
 		})
-		.sort((a, b) => b.level - a.level);
+		.sort((a, b) => parseInt(b.level) - parseInt(a.level));
 };

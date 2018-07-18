@@ -25,7 +25,7 @@ const calculateTile = (pos, tiles, referencePos) => {
 	return newTile;
 };
 
-const getNextTile = (pos, tiles, levelNr, dispatch, referencePos) => {
+const getNextTile = ({ pos, tiles, levelNr, dispatch, referencePos, playerName }) => {
 	// get random tile, assign it to tiles
 	const newTile = calculateTile(pos, tiles, referencePos);
 
@@ -37,6 +37,7 @@ const getNextTile = (pos, tiles, levelNr, dispatch, referencePos) => {
 	if (Object.keys(tiles).length === levelNr + 1) {
 		dispatch({
 			type: actionTypes.BUILD_LEVEL,
+			playerName,
 			level: {
 				tiles,
 				levelNr,
@@ -45,11 +46,11 @@ const getNextTile = (pos, tiles, levelNr, dispatch, referencePos) => {
 		});
 	} else {
 		// otherwise recurse get next tile with new position
-		getNextTile(newTile, tiles, levelNr, dispatch, referencePos);
+		getNextTile({ pos: newTile, tiles, levelNr, dispatch, referencePos, playerName });
 	}
 };
 
-const buildLevel = (pos, levelNr) => dispatch => {
+const buildLevel = (pos, levelNr, playerName) => dispatch => {
 	dispatch(startTimer());
 
 	const tiles = {
@@ -58,7 +59,7 @@ const buildLevel = (pos, levelNr) => dispatch => {
 		},
 	};
 
-	getNextTile(pos, tiles, levelNr, dispatch, pos);
+	getNextTile({ pos, tiles, levelNr, dispatch, referencePos: pos, playerName });
 };
 
 export default buildLevel;

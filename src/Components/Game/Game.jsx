@@ -7,6 +7,7 @@ import Rodal from 'rodal';
 
 import GameStats from './GameStats';
 import Board from './Board';
+import getActivePlayer from '../../Redux/selectors/activePlayer';
 
 const customModalStyles = {
 	width: '94%',
@@ -124,7 +125,7 @@ const mapStateToProps = state => ({
 	levelFailure: state.currentLevel.levelFailure,
 	levelNr: state.currentLevel.levelNr,
 	remainingTiles: state.currentLevel.remainingTiles,
-	remainingLives: state.activePlayer.lives,
+	remainingLives: getActivePlayer(state).lives,
 });
 
 export default connect(mapStateToProps)(_Game);

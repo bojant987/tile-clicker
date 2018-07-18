@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import createPlayer from '../../Redux/actions/createPlayer';
 import choosePlayer from '../../Redux/actions/choosePlayer';
 import handIcon from '../../../assets/img/pixeled-hand.svg';
+import getActivePlayer from '../../Redux/selectors/activePlayer';
 
 export class _ChoosePlayer extends Component {
 	static propTypes = {
@@ -74,7 +75,7 @@ export class _ChoosePlayer extends Component {
 						{players.length > 0 ? (
 							players.map(player => (
 								<span
-									onClick={() => choose(player)}
+									onClick={() => choose(player.name, player.progress)}
 									className={
 										activePlayer.name === player.name
 											? 'ChoosePlayer__playerListItem ChoosePlayer__playerListItem--active'
@@ -123,12 +124,12 @@ export class _ChoosePlayer extends Component {
 
 const mapDispatchToProps = dispatch => ({
 	create: player => dispatch(createPlayer(player)),
-	choose: player => dispatch(choosePlayer(player)),
+	choose: (playerName, playerProgress) => dispatch(choosePlayer(playerName, playerProgress)),
 });
 
 const mapStateToProps = state => ({
 	players: state.players,
-	activePlayer: state.activePlayer,
+	activePlayer: getActivePlayer(state),
 });
 
 export default connect(

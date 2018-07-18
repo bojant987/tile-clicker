@@ -1,8 +1,9 @@
 import actionTypes from '../constants/actionTypes';
 
-const choosePlayer = player => ({
+const choosePlayer = (playerName, progress) => ({
 	type: actionTypes.CHOOSE_PLAYER,
-	player,
+	playerName,
+	progress,
 });
 
 export const openChoosePlayerModal = () => ({

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import getActivePlayer from '../../Redux/selectors/activePlayer';
+
 const GameStats = ({ timer, remainingTiles, lives, level }) => (
 	<div className="GameStats">
 		<div className="GameStats__timer h-paddingL--xxl" title="Time elapsed">
@@ -27,7 +29,7 @@ GameStats.propTypes = {
 };
 
 const mapStateToProps = state => ({
-	lives: state.activePlayer.lives,
+	lives: getActivePlayer(state).lives,
 	level: state.currentLevel.levelNr,
 	timer: state.currentLevel.timer,
 	remainingTiles: state.currentLevel.remainingTiles,
