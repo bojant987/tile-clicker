@@ -64,7 +64,7 @@ export class _ChoosePlayer extends Component {
 		return (
 			<div className="ChoosePlayer">
 				{!activePlayer.name ? (
-					<h4 className="ChoosePlayer__noActive h-marginB--md">
+					<h4 className="ChoosePlayer__noActive h-marginB--lg h-textCenter">
 						&gt; No clicking allowed until you select a player! &lt;
 					</h4>
 				) : null}

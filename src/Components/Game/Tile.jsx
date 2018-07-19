@@ -25,6 +25,7 @@ export const _Tile = props => {
 	} = props;
 
 	const calculateStatusClassName = () => (status ? `Board__tile--${status}` : '');
+	const calculateGameProgressClassName = () => (!levelInProgress ? 'Board__tile--off' : '');
 
 	const resolveAction = () => {
 		if (!activePlayer.name) {
@@ -49,7 +50,12 @@ export const _Tile = props => {
 		}
 	};
 
-	return <div className={`Board__tile ${calculateStatusClassName()}`} onClick={resolveAction} />;
+	return (
+		<div
+			className={`Board__tile ${calculateStatusClassName()} ${calculateGameProgressClassName()}`}
+			onClick={resolveAction}
+		/>
+	);
 };
 
 _Tile.propTypes = {

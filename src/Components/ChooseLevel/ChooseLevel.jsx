@@ -41,6 +41,7 @@ class ChooseLevel extends Component {
 
 		return (
 			<div className="ChooseLevel">
+				<h4 className="h-marginB--lg h-textCenter">Choose a level</h4>
 				<Select
 					name="selected-level"
 					value={selectedLevel}

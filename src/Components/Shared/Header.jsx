@@ -24,6 +24,7 @@ class Header extends Component {
 		openChoosePlayer: PropTypes.func.isRequired,
 		closeChoosePlayer: PropTypes.func.isRequired,
 		isChoosePlayerModalOpen: PropTypes.bool.isRequired,
+		activePlayerName: PropTypes.string.isRequired,
 	};
 
 	constructor(props) {
@@ -35,6 +36,20 @@ class Header extends Component {
 			mobileMenuOpen: false,
 		};
 	}
+
+	componentDidMount() {
+		document.addEventListener('click', this.globalMenuClose);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.globalMenuClose);
+	}
+
+	globalMenuClose = event => {
+		if (this.menuCollapse && !this.menuCollapse.contains(event.target)) {
+			this.setState({ mobileMenuOpen: false });
+		}
+	};
 
 	openChooseLevelModal = () => {
 		this.setState({ isChooseLevelModalOpen: true });
@@ -59,33 +74,53 @@ class Header extends Component {
 	};
 
 	render() {
-		const { isChoosePlayerModalOpen, openChoosePlayer, closeChoosePlayer } = this.props;
+		const { isChoosePlayerModalOpen, openChoosePlayer, closeChoosePlayer, activePlayerName } = this.props;
 
 		const { isChooseLevelModalOpen, isTopScoresModalOpen, mobileMenuOpen } = this.state;
 
 		return (
 			<div className="Header">
-				<button type="button" className="Header__menuCollapse" onClick={this.toggleMenu}>
+				<button
+					type="button"
+					className="Header__menuCollapse"
+					onClick={this.toggleMenu}
+					ref={el => {
+						this.menuCollapse = el;
+					}}
+				>
 					<span className="Header__menuCollapseBar" />
 					<span className="Header__menuCollapseBar" />
 					<span className="Header__menuCollapseBar" />
 				</button>
 
 				<div className={mobileMenuOpen ? 'Header__menu Header__menu--mobileOpen' : 'Header__menu'}>
-					<span className="Header__item" onClick={openChoosePlayer}>
+					<button type="button" className="Header__item" onClick={openChoosePlayer}>
 						Choose a player
-					</span>
-					<span className="Header__item" onClick={this.openChooseLevelModal}>
+					</button>
+					<button
+						type="button"
+						className={activePlayerName ? 'Header__item' : 'Header__item Header__item--disabled'}
+						onClick={this.openChooseLevelModal}
+						disabled={!activePlayerName}
+					>
 						Choose a level
-					</span>
-					<span className="Header__item" onClick={this.openTopScoresModal}>
+					</button>
+					<button
+						type="button"
+						className={activePlayerName ? 'Header__item' : 'Header__item Header__item--disabled'}
+						onClick={this.openTopScoresModal}
+						disabled={!activePlayerName}
+					>
 						Top scores
-					</span>
+					</button>
 				</div>
 
 				{isChoosePlayerModalOpen ? (
 					<Rodal
-						customStyles={customModalStyles}
+						customStyles={{
+							...customModalStyles,
+							overflowX: 'hidden',
+						}}
 						visible={isChoosePlayerModalOpen}
 						onClose={closeChoosePlayer}
 					>
@@ -128,6 +163,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
 	isChoosePlayerModalOpen: state.isChoosePlayerModalOpen,
+	activePlayerName: state.activePlayerName,
 });
 
 export default connect(

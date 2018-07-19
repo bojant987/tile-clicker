@@ -3,26 +3,27 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { playerScores, displayScores } from '../../Redux/selectors/topScores';
-import openChart from '../../Redux/actions/openChart';
 import Score from './Score';
 import TimeLineChart from './TimeLineChart';
 
-const TopScores = ({ playerName, topScores, showChart }) =>
+const TopScores = ({ playerName, topScores }) =>
 	topScores.length > 0 ? (
 		<div className="TopScores">
 			<h2 className="h-marginB--xxl">{`${playerName}'s`} top scores</h2>
-			<table className="TopScores__table">
-				<thead className="TopScores__thead">
-					<tr>
-						<th className="TopScores__th">Level</th>
-						<th className="TopScores__th">Time</th>
-						<th className="TopScores__th">Times completed</th>
-					</tr>
-				</thead>
-				<tbody className="TopScores__tbody">
-					{topScores.map(score => <Score score={score} key={score.level} showChart={showChart} />)}
-				</tbody>
-			</table>
+			<div className="TopScores__tableWrapper">
+				<table className="TopScores__table">
+					<thead className="TopScores__thead">
+						<tr>
+							<th className="TopScores__th">Level</th>
+							<th className="TopScores__th">Time</th>
+							<th className="TopScores__th">Times completed</th>
+						</tr>
+					</thead>
+					<tbody className="TopScores__tbody">
+						{topScores.map(score => <Score score={score} key={score.level} />)}
+					</tbody>
+				</table>
+			</div>
 			<TimeLineChart />
 		</div>
 	) : (
@@ -32,7 +33,6 @@ const TopScores = ({ playerName, topScores, showChart }) =>
 TopScores.propTypes = {
 	topScores: PropTypes.array.isRequired,
 	playerName: PropTypes.string,
-	showChart: PropTypes.func.isRequired,
 };
 
 TopScores.defaultProps = {
@@ -48,11 +48,4 @@ const mapStateToProps = state => {
 	};
 };
 
-const mapDispatchToProps = dispatch => ({
-	showChart: scoreId => dispatch(openChart(scoreId)),
-});
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(TopScores);
+export default connect(mapStateToProps)(TopScores);

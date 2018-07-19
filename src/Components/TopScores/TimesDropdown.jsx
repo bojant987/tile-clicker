@@ -1,11 +1,16 @@
 /* eslint-disable react/no-array-index-key */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-export default class TimesDropdown extends Component {
+import { scoreById } from '../../Redux/selectors/topScores';
+import openChart from '../../Redux/actions/openChart';
+
+export class _TimesDropdown extends Component {
 	static propTypes = {
 		times: PropTypes.array.isRequired,
 		showChart: PropTypes.func.isRequired,
+		openedChart: PropTypes.any.isRequired,
 	};
 
 	constructor(props) {
@@ -23,7 +28,7 @@ export default class TimesDropdown extends Component {
 	};
 
 	render() {
-		const { times, showChart } = this.props;
+		const { times, showChart, openedChart } = this.props;
 		const { expanded } = this.state;
 		const buttonClassNameModifier = expanded ? 'expanded' : 'collapsed';
 
@@ -31,7 +36,11 @@ export default class TimesDropdown extends Component {
 			<div className="TimesDropdown">
 				<span className="TimesDropdown__item">
 					<span
-						className="TimesDropdown__chartButton"
+						className={
+							openedChart === times[0].scoreId
+								? 'TimesDropdown__chartButton TimesDropdown__chartButton--active'
+								: 'TimesDropdown__chartButton'
+						}
 						onClick={() => showChart(times[0].scoreId)}
 						title="Open score chart"
 					/>
@@ -50,7 +59,11 @@ export default class TimesDropdown extends Component {
 							return (
 								<span key={index} className="TimesDropdown__item">
 									<span
-										className="TimesDropdown__chartButton"
+										className={
+											openedChart === time.scoreId
+												? 'TimesDropdown__chartButton TimesDropdown__chartButton--active'
+												: 'TimesDropdown__chartButton'
+										}
 										onClick={() => showChart(time.scoreId)}
 										title="Open score chart"
 									/>
@@ -63,3 +76,17 @@ export default class TimesDropdown extends Component {
 		);
 	}
 }
+
+const mapStateToProps = state => ({
+	score: scoreById(state),
+	openedChart: state.openedChart,
+});
+
+const mapDispatchToProps = dispatch => ({
+	showChart: scoreId => dispatch(openChart(scoreId)),
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(_TimesDropdown);

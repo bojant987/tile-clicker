@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 
 import getActivePlayer from '../../Redux/selectors/activePlayer';
 
-const GameStats = ({ timer, remainingTiles, lives, level }) => (
-	<div className="GameStats">
-		<div className="GameStats__timer h-paddingL--xxl" title="Time elapsed">
+const GameStats = ({ timer, remainingTiles, lives, level, levelInProgress }) => (
+	<div className={levelInProgress ? 'GameStats' : 'GameStats GameStats--off'}>
+		<div className="GameStats__item GameStats__timer h-paddingL--xxl" title="Time elapsed">
 			{Math.round(timer / 1000)}
 		</div>
-		<div className="GameStats__remaining h-paddingL--xxl" title="Remaining moves">
+		<div className="GameStats__item GameStats__remaining h-paddingL--xxl" title="Remaining moves">
 			{remainingTiles}
 		</div>
-		<div className="GameStats__lives h-paddingL--xxl" title="Lives">
+		<div className="GameStats__item GameStats__lives h-paddingL--xxl" title="Lives">
 			{lives}
 		</div>
-		<div className="GameStats__level h-paddingL--xxl" title="Level">
+		<div className="GameStats__item GameStats__level h-paddingL--xxl" title="Level">
 			{level}
 		</div>
 	</div>
@@ -26,6 +26,7 @@ GameStats.propTypes = {
 	remainingTiles: PropTypes.number.isRequired,
 	lives: PropTypes.number.isRequired,
 	level: PropTypes.number.isRequired,
+	levelInProgress: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -33,6 +34,7 @@ const mapStateToProps = state => ({
 	level: state.currentLevel.levelNr,
 	timer: state.currentLevel.timer,
 	remainingTiles: state.currentLevel.remainingTiles,
+	levelInProgress: state.currentLevel.inProgress,
 });
 
 export default connect(mapStateToProps)(GameStats);

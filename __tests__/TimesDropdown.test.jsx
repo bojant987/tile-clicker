@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import TimesDropdown from '../src/Components/TopScores/TimesDropdown';
+import { _TimesDropdown as TimesDropdown } from '../src/Components/TopScores/TimesDropdown';
 
 describe('TimesDropdown', () => {
 	const compProps = {

@@ -1,8 +1,22 @@
 @import "../base/variables";
 
 .Board__tile {
-	border-left: 1px solid #000;
+	border-left: 1px solid;
+	border-bottom: 1px solid;
 	flex: 1;
+	background-color: $ternary;
+	transition: 0.3s;
+	opacity: 1;
+
+	&:nth-of-type(10n) {
+		border-right: 1px solid;
+	}
+
+	border-color: $passive;
+
+	&--off {
+		opacity: 0.8;
+	}
 }
 
 .Board__tile--active {

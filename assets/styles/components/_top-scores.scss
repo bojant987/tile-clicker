@@ -4,11 +4,18 @@
 	text-align: center;
 }
 
-.TopScores__table {
+.TopScores__tableWrapper {
 	width: 100%;
 	max-width: 800px;
+	max-height: 391px;
+	overflow-y: auto;
 	margin: 0 auto;
+}
+
+.TopScores__table {
 	border-collapse: collapse;
+	width: 100%;
+	max-width: 800px;
 }
 
 .TopScores__tr {

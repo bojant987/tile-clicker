@@ -8,6 +8,8 @@
 }
 
 .Header__item {
+	background-color: transparent;
+	outline: none;
 	margin: 5px 0;
 	padding: 5px 10px;
 	border: 1px solid $light;
@@ -19,6 +21,14 @@
 	&:hover {
 		color: $primary;
 		border-color: $primary;
+	}
+
+	&--disabled {
+		&:hover {
+			color: $passive;
+			border-color: $passive;
+			cursor: not-allowed;
+		}
 	}
 }
 

@@ -7,6 +7,17 @@
 	flex-wrap: wrap;
 	font-size: 18px;
 	font-weight: 500;
+	transition: 0.3s;
+	opacity: 1;
+	border-bottom: 1px solid $passive;
+
+	&--off {
+		opacity: 0.8;
+
+		.GameStats__item {
+			opacity: 0.5;
+		}
+	}
 }
 
 .GameStats__timer {
