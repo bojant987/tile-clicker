@@ -4,6 +4,19 @@ import { calculateStatus, getPossibleTiles } from '../util/util';
 import { startTimer } from './levelTimer';
 import { PASSIVE } from '../constants/tileStatuses';
 
+const levelBuilt = (playerName, tiles, levelNr) => dispatch => {
+	dispatch(startTimer());
+	dispatch({
+		type: actionTypes.BUILD_LEVEL,
+		playerName,
+		level: {
+			tiles,
+			levelNr,
+			remainingTiles: Object.keys(tiles).length - 1,
+		},
+	});
+};
+
 const calculateTile = (pos, tiles, referencePos) => {
 	// get possible tiles from movement rules
 	const possibleTiles = getPossibleTiles(pos);
@@ -33,17 +46,9 @@ const getNextTile = ({ pos, tiles, levelNr, dispatch, referencePos, playerName }
 		status: newTile.status,
 	};
 
-	// if tiles are full, dispatch them
+	// if tiles are full, dispatch level built
 	if (Object.keys(tiles).length === levelNr + 1) {
-		dispatch({
-			type: actionTypes.BUILD_LEVEL,
-			playerName,
-			level: {
-				tiles,
-				levelNr,
-				remainingTiles: Object.keys(tiles).length - 1,
-			},
-		});
+		dispatch(levelBuilt(playerName, tiles, levelNr));
 	} else {
 		// otherwise recurse get next tile with new position
 		getNextTile({ pos: newTile, tiles, levelNr, dispatch, referencePos, playerName });
@@ -51,8 +56,6 @@ const getNextTile = ({ pos, tiles, levelNr, dispatch, referencePos, playerName }
 };
 
 const buildLevel = (pos, levelNr, playerName) => dispatch => {
-	dispatch(startTimer());
-
 	const tiles = {
 		[`${pos.x}-${pos.y}`]: {
 			status: PASSIVE,

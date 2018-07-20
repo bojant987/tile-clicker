@@ -1,6 +1,4 @@
 import { playerScores, displayScores } from '../src/Redux/selectors/topScores';
-import actionTypes from '../src/Redux/constants/actionTypes';
-import reducer from '../src/Redux/reducers/players';
 
 describe('topScores selectors', () => {
 	const state = {

@@ -6,7 +6,6 @@ const initialState = getFromStorage('topScores') ? getFromStorage('topScores') :
 export default function topScores(state = initialState, action) {
 	switch (action.type) {
 		case actionTypes.UPDATE_SCORE: {
-			// TODO: this thing is a mess
 			const currentScore = state.find(score => score.id === action.scoreId)
 				? { ...state.find(score => score.id === action.scoreId) }
 				: { levelTime: 0 };

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import createPlayer from '../../Redux/actions/createPlayer';
 import choosePlayer from '../../Redux/actions/choosePlayer';
-import handIcon from '../../../assets/img/pixeled-hand.svg';
 import getActivePlayer from '../../Redux/selectors/activePlayer';
 
 export class _ChoosePlayer extends Component {
@@ -87,7 +86,7 @@ export class _ChoosePlayer extends Component {
 									{activePlayer.name === player.name ? (
 										<img
 											className="ChoosePlayer__playerListItemIcon"
-											src={handIcon}
+											src="../../../assets/img/pixeled-hand.svg"
 											alt="Pointer icon"
 										/>
 									) : null}

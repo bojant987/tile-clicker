@@ -38,12 +38,17 @@ main {
 	background-color: $primary;
 }
 
-.LocalStorageError__message {
-	height: 100%;
+.LocalStorageError {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	height: 100vh;
+	padding: 40px 15px;
+}
+
+.LocalStorageError__photo {
+	max-width: 100%;
 }
 
 .InputGroup {
