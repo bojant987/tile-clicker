@@ -21,10 +21,8 @@ const calculateTile = (pos, tiles, referencePos) => {
 	// get possible tiles from movement rules
 	const possibleTiles = getPossibleTiles(pos);
 
-	// filter out non viable ones (<1 || >10 || already placed on level)
-	const viableTiles = possibleTiles.filter(
-		tile => tile.x >= 1 && tile.x <= 10 && tile.y >= 1 && tile.y <= 10 && !tiles[`${tile.x}-${tile.y}`]
-	);
+	// filter out non viable ones (<1 || >10)
+	const viableTiles = possibleTiles.filter(tile => tile.x >= 1 && tile.x <= 10 && tile.y >= 1 && tile.y <= 10);
 
 	// get random one out of result set
 	const maxIndex = viableTiles.length;
@@ -32,10 +30,13 @@ const calculateTile = (pos, tiles, referencePos) => {
 	const newTile = viableTiles[randomIndex];
 
 	// calculate its status
-	newTile.status = calculateStatus(referencePos, newTile);
+	const newTileStatus = calculateStatus(referencePos, newTile);
 
 	// return it
-	return newTile;
+	return {
+		...newTile,
+		status: newTileStatus,
+	};
 };
 
 const getNextTile = ({ pos, tiles, levelNr, dispatch, referencePos, playerName }) => {
