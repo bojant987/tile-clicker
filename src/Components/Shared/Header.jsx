@@ -13,10 +13,10 @@ const customModalStyles = {
 	maxWidth: '1200px',
 	maxHeight: '90%',
 	overflowY: 'auto',
-	height: 'fit-content',
-	top: '50%',
-	bottom: '50%',
+	height: 'auto',
 	paddingTop: '60px',
+	position: 'relative',
+	margin: 0,
 };
 
 class Header extends Component {

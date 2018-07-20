@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer as HotContainer } from 'react-hot-loader';
+import 'babel-polyfill';
 
 import 'rodal/lib/rodal.css';
 import 'react-select/dist/react-select.css';

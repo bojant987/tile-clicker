@@ -33,6 +33,7 @@ body {
 }
 
 main {
+	display: block; // ie, why don't you be a real browser
 	min-height: calc(100vh - #{$headerHeight} - #{$footerHeight});
 	background-color: $primary;
 }
@@ -58,6 +59,8 @@ main {
 	max-width: 100%;
 	padding: 10px 15px;
 	outline: none;
+	border: 1px solid $primary;
+	border-radius: 2px;
 }
 
 .Button {
@@ -77,4 +80,10 @@ main {
 	&:hover {
 		background-color: $active;
 	}
+}
+
+.rodal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

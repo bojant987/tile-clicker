@@ -12,11 +12,13 @@ import getActivePlayer from '../../Redux/selectors/activePlayer';
 const customModalStyles = {
 	width: '94%',
 	maxWidth: '600px',
-	height: 'fit-content',
-	top: '50%',
-	bottom: '50%',
-	paddingTop: '60px',
 	paddingBottom: '60px',
+	maxHeight: '90%',
+	overflowY: 'auto',
+	height: 'auto',
+	paddingTop: '60px',
+	position: 'relative',
+	margin: 0,
 };
 
 export class _Game extends Component {
