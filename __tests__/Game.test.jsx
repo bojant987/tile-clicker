@@ -7,7 +7,7 @@ describe('Game', () => {
 	const compProps = {
 		levelSuccess: false,
 		levelFailure: false,
-		timesClicked: 0,
+		levelNr: 0,
 		remainingTiles: 0,
 		remainingLives: 0,
 	};
@@ -16,6 +16,14 @@ describe('Game', () => {
 		const component = shallow(<Game {...compProps} levelSuccess />);
 
 		expect(component.find('.Game__status--success').length).toEqual(1);
+
+		component.unmount();
+	});
+
+	test('shows success modal with finished game message when level is 99', () => {
+		const component = shallow(<Game {...compProps} levelSuccess levelNr={99} />);
+
+		expect(component.find('.Game__status--finished').length).toEqual(1);
 
 		component.unmount();
 	});

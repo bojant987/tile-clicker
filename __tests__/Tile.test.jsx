@@ -16,6 +16,8 @@ describe('Tile', () => {
 		activePlayer: {},
 		openChoosePlayer: () => {},
 		status: 'active',
+		timer: 0,
+		scoreId: 1,
 	};
 
 	test('sets status className properly', () => {

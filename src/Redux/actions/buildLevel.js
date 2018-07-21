@@ -21,8 +21,10 @@ const calculateTile = (pos, tiles, referencePos) => {
 	// get possible tiles from movement rules
 	const possibleTiles = getPossibleTiles(pos);
 
-	// filter out non viable ones (<1 || >10)
-	const viableTiles = possibleTiles.filter(tile => tile.x >= 1 && tile.x <= 10 && tile.y >= 1 && tile.y <= 10);
+	// filter out non viable ones (<1 || >10 || already on board)
+	const viableTiles = possibleTiles.filter(
+		tile => tile.x >= 1 && tile.x <= 10 && tile.y >= 1 && tile.y <= 10 && !tiles[`${tile.x}-${tile.y}`]
+	);
 
 	// get random one out of result set
 	const maxIndex = viableTiles.length;

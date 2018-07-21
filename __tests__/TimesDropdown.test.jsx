@@ -6,6 +6,8 @@ import { _TimesDropdown as TimesDropdown } from '../src/Components/TopScores/Tim
 describe('TimesDropdown', () => {
 	const compProps = {
 		times: [{ value: 1, scoreId: 0 }],
+		showChart: () => {},
+		openedChart: 1,
 	};
 
 	test("doesn't show expander button if there's only 1 time", () => {

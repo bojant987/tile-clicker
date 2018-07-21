@@ -82,15 +82,26 @@ export class _Game extends Component {
 						visible={isSuccessModalOpen}
 						onClose={this.closeSuccessModal}
 					>
-						<div className="Game__status Game__status--success h-textCenter h-centerBlock">
-							<img
-								className="Game__statusIcon"
-								src="../../../assets/img/success-flag.svg"
-								alt="Success"
-							/>
-							<h4 className="h-marginB--md">You did it! You clicked {levelNr} times!</h4>
-							<span className="Game__statusLives h-paddingL--xxl">+1</span>
-						</div>
+						{levelNr === 99 ? (
+							<div className="Game__status Game__status--finished h-textCenter h-centerBlock">
+								<img
+									className="Game__statusIcon"
+									src="../../../assets/img/confetti.svg"
+									alt="Success"
+								/>
+								<h4 className="h-marginB--md">You have proven yourself as a click master!</h4>
+							</div>
+						) : (
+							<div className="Game__status Game__status--success h-textCenter h-centerBlock">
+								<img
+									className="Game__statusIcon"
+									src="../../../assets/img/success-flag.svg"
+									alt="Success"
+								/>
+								<h4 className="h-marginB--md">You did it! You clicked {levelNr} times!</h4>
+								<span className="Game__statusLives h-paddingL--xxl">+1</span>
+							</div>
+						)}
 					</Rodal>
 				) : null}
 
