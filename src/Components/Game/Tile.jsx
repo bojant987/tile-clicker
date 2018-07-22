@@ -54,6 +54,7 @@ export const _Tile = props => {
 		<div
 			className={`Board__tile ${calculateStatusClassName()} ${calculateGameProgressClassName()}`}
 			onClick={resolveAction}
+			data-spec={`regionTile_${xPos}-${yPos}`}
 		/>
 	);
 };

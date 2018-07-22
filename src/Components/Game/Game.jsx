@@ -83,7 +83,10 @@ export class _Game extends Component {
 						onClose={this.closeSuccessModal}
 					>
 						{levelNr === 99 ? (
-							<div className="Game__status Game__status--finished h-textCenter h-centerBlock">
+							<div
+								className="Game__status Game__status--finished h-textCenter h-centerBlock"
+								data-spec="regionGameSuccess"
+							>
 								<img
 									className="Game__statusIcon"
 									src="../../../assets/img/confetti.svg"
@@ -92,7 +95,10 @@ export class _Game extends Component {
 								<h4 className="h-marginB--md">You have proven yourself as a click master!</h4>
 							</div>
 						) : (
-							<div className="Game__status Game__status--success h-textCenter h-centerBlock">
+							<div
+								className="Game__status Game__status--success h-textCenter h-centerBlock"
+								data-spec="regionLevelSuccess"
+							>
 								<img
 									className="Game__statusIcon"
 									src="../../../assets/img/success-flag.svg"
@@ -111,7 +117,10 @@ export class _Game extends Component {
 						visible={isFailureModalOpen}
 						onClose={this.closeFailureModal}
 					>
-						<div className="Game__status Game__status--failure h-textCenter h-centerBlock">
+						<div
+							className="Game__status Game__status--failure h-textCenter h-centerBlock"
+							data-spec="regionLevelFailure"
+						>
 							<img
 								className="Game__statusIcon"
 								src={
@@ -121,7 +130,7 @@ export class _Game extends Component {
 								}
 								alt="Failure"
 							/>
-							<h4 className="h-marginB--md">
+							<h4 className="h-marginB--md" data-spec="textLevelFailureMessage">
 								{remainingLives > 0 ? 'Oh no, what have you done?' : "Now you've done it. Game over."}
 							</h4>
 							<span className="Game__statusLives h-paddingL--xxl">-{remainingTiles}</span>

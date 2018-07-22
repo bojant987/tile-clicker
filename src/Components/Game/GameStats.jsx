@@ -5,17 +5,25 @@ import PropTypes from 'prop-types';
 import getActivePlayer from '../../Redux/selectors/activePlayer';
 
 const GameStats = ({ timer, remainingTiles, lives, level, levelInProgress }) => (
-	<div className={levelInProgress ? 'GameStats' : 'GameStats GameStats--off'}>
-		<div className="GameStats__item GameStats__timer h-paddingL--xxl" title="Time elapsed">
+	<div className={levelInProgress ? 'GameStats' : 'GameStats GameStats--off'} data-spec="regionGameStats">
+		<div
+			className="GameStats__item GameStats__timer h-paddingL--xxl"
+			title="Time elapsed"
+			data-spec="textLevelTime"
+		>
 			{Math.round(timer / 1000)}
 		</div>
-		<div className="GameStats__item GameStats__remaining h-paddingL--xxl" title="Remaining moves">
+		<div
+			className="GameStats__item GameStats__remaining h-paddingL--xxl"
+			title="Remaining moves"
+			data-spec="textRemainingTiles"
+		>
 			{remainingTiles}
 		</div>
-		<div className="GameStats__item GameStats__lives h-paddingL--xxl" title="Lives">
+		<div className="GameStats__item GameStats__lives h-paddingL--xxl" title="Lives" data-spec="textPlayerLives">
 			{lives}
 		</div>
-		<div className="GameStats__item GameStats__level h-paddingL--xxl" title="Level">
+		<div className="GameStats__item GameStats__level h-paddingL--xxl" title="Level" data-spec="textCurrentLevel">
 			{level}
 		</div>
 	</div>

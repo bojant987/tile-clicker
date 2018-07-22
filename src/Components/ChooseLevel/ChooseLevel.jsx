@@ -40,7 +40,7 @@ class ChooseLevel extends Component {
 		const viableLevels = ALL_LEVELS.filter(level => level.value <= progress);
 
 		return (
-			<div className="ChooseLevel">
+			<div className="ChooseLevel" data-spec="regionChooseLevel">
 				<h4 className="h-marginB--lg h-textCenter">Choose a level</h4>
 				<Select
 					name="selected-level"
@@ -48,8 +48,14 @@ class ChooseLevel extends Component {
 					onChange={this.handleLevelChange}
 					options={viableLevels}
 					clearable={false}
+					data-spec="actionOpenLevelDropdown"
 				/>
-				<button type="button" className="Button h-marginT--lg h-centerBlock" onClick={this.play}>
+				<button
+					type="button"
+					className="Button h-marginT--lg h-centerBlock"
+					onClick={this.play}
+					data-spec="actionChooseLevel"
+				>
 					Play
 				</button>
 			</div>

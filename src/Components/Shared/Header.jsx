@@ -94,7 +94,12 @@ class Header extends Component {
 				</button>
 
 				<div className={mobileMenuOpen ? 'Header__menu Header__menu--mobileOpen' : 'Header__menu'}>
-					<button type="button" className="Header__item" onClick={openChoosePlayer}>
+					<button
+						type="button"
+						className="Header__item"
+						onClick={openChoosePlayer}
+						data-spec="actionOpenChoosePlayer"
+					>
 						Choose a player
 					</button>
 					<button
@@ -102,6 +107,7 @@ class Header extends Component {
 						className={activePlayerName ? 'Header__item' : 'Header__item Header__item--disabled'}
 						onClick={this.openChooseLevelModal}
 						disabled={!activePlayerName}
+						data-spec="actionOpenChooseLevel"
 					>
 						Choose a level
 					</button>
@@ -110,6 +116,7 @@ class Header extends Component {
 						className={activePlayerName ? 'Header__item' : 'Header__item Header__item--disabled'}
 						onClick={this.openTopScoresModal}
 						disabled={!activePlayerName}
+						data-spec="actionOpenTopScores"
 					>
 						Top scores
 					</button>

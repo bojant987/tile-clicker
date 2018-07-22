@@ -61,9 +61,9 @@ export class _ChoosePlayer extends Component {
 		const { newPlayerName, inputError } = this.state;
 
 		return (
-			<div className="ChoosePlayer">
+			<div className="ChoosePlayer" data-spec="regionChoosePlayer">
 				{!activePlayer.name ? (
-					<h4 className="ChoosePlayer__noActive h-marginB--lg h-textCenter">
+					<h4 className="ChoosePlayer__noActive h-marginB--lg h-textCenter" data-spec="textNoActivePlayer">
 						&gt; No clicking allowed until you select a player! &lt;
 					</h4>
 				) : null}
@@ -81,6 +81,7 @@ export class _ChoosePlayer extends Component {
 											: 'ChoosePlayer__playerListItem'
 									}
 									key={player.name}
+									data-spec={`regionPlayersList_player_${player.name}`}
 								>
 									{player.name}
 									{activePlayer.name === player.name ? (
@@ -88,12 +89,15 @@ export class _ChoosePlayer extends Component {
 											className="ChoosePlayer__playerListItemIcon"
 											src="../../../assets/img/pixeled-hand.svg"
 											alt="Pointer icon"
+											data-spec={`regionPlayersList_activeIcon_${player.name}`}
 										/>
 									) : null}
 								</span>
 							))
 						) : (
-							<p className="ChoosePlayer__noPlayers">Players? Never heard of them.</p>
+							<p className="ChoosePlayer__noPlayers" data-spec="textNoPlayers">
+								Players? Never heard of them.
+							</p>
 						)}
 					</div>
 				</div>
@@ -109,12 +113,17 @@ export class _ChoosePlayer extends Component {
 							type="text"
 							value={newPlayerName}
 							onChange={this.setNewPlayerName}
+							data-spec="fieldPlayerName"
 						/>
-						<button type="submit" className="Button h-marginB--sm">
+						<button type="submit" className="Button h-marginB--sm" data-spec="actionSubmitPlayerName">
 							Create
 						</button>
 					</div>
-					{inputError ? <p className="ChoosePlayer__error">{inputError}</p> : null}
+					{inputError ? (
+						<p className="ChoosePlayer__error" data-spec="textInputError">
+							{inputError}
+						</p>
+					) : null}
 				</form>
 			</div>
 		);
