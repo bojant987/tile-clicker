@@ -56,17 +56,12 @@ export default function currentLevel(state = initialState, action) {
 			};
 		case actionTypes.CHOOSE_LEVEL:
 			return {
-				...state,
+				...initialState,
 				levelNr: action.level,
-				levelSuccess: false,
-				levelFailure: false,
-				tiles: {},
-				inProgress: false,
-				timer: 0,
 			};
 		case actionTypes.CHOOSE_PLAYER:
 			return {
-				...state,
+				...initialState,
 				levelNr: action.progress,
 			};
 		default:

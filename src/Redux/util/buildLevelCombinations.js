@@ -12,7 +12,7 @@ const getValidMoves = (boardWidth = 10) => {
 
 	for (let x = 1; x <= boardWidth; x++) {
 		for (let y = 1; y <= boardWidth; y++) {
-			validMoves[formatTileIndex(x, y)] = getPossibleTiles({ x, y });
+			validMoves[formatTileIndex(x, y)] = getPossibleTiles(x, y);
 		}
 	}
 
