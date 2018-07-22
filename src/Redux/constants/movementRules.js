@@ -1,83 +1,35 @@
 const MOVEMENT_RULES = [
 	{
-		x: {
-			operation: '+',
-			value: 3,
-		},
-		y: {
-			operation: null,
-			value: 0,
-		},
+		x: 3,
+		y: 0,
 	},
 	{
-		x: {
-			operation: '-',
-			value: 3,
-		},
-		y: {
-			operation: null,
-			value: 0,
-		},
+		x: -3,
+		y: 0,
 	},
 	{
-		x: {
-			operation: null,
-			value: 0,
-		},
-		y: {
-			operation: '+',
-			value: 3,
-		},
+		x: 0,
+		y: 3,
 	},
 	{
-		x: {
-			operation: null,
-			value: 0,
-		},
-		y: {
-			operation: '-',
-			value: 3,
-		},
+		x: 0,
+		y: -3,
 	},
 	{
-		x: {
-			operation: '+',
-			value: 2,
-		},
-		y: {
-			operation: '+',
-			value: 2,
-		},
+		x: 2,
+		y: 2,
 	},
 	{
-		x: {
-			operation: '-',
-			value: 2,
-		},
-		y: {
-			operation: '-',
-			value: 2,
-		},
+		x: -2,
+		y: -2,
 	},
 	{
-		x: {
-			operation: '-',
-			value: 2,
-		},
-		y: {
-			operation: '+',
-			value: 2,
-		},
+		x: -2,
+		y: 2,
 	},
 	{
-		x: {
-			operation: '+',
-			value: 2,
-		},
-		y: {
-			operation: '-',
-			value: 2,
-		},
+		x: 2,
+		y: -2,
 	},
 ];
 

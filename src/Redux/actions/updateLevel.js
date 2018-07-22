@@ -1,5 +1,5 @@
 import actionTypes from '../constants/actionTypes';
-import { calculateStatus } from '../util/util';
+import { calculateStatus, formatTileIndex } from '../util/util';
 import { stopTimer } from './levelTimer';
 import { updateScore, revokeScore } from './score';
 import { ACTIVE, IDLE, PASSIVE } from '../constants/tileStatuses';
@@ -47,17 +47,16 @@ const updateLevel = ({ referenceTile, levelNr, levelTiles, activePlayer, timer, 
 		return;
 	}
 
+	const referenceTileIndex = formatTileIndex(referenceTile.x, referenceTile.y);
+
 	// set clicked tile status to passive
 	const newTiles = { ...levelTiles };
-	newTiles[`${referenceTile.x}-${referenceTile.y}`].status = PASSIVE;
+	newTiles[referenceTileIndex].status = PASSIVE;
 
 	// recalculate status of all remaining tiles
-	Object.keys(newTiles).forEach(key => {
-		if (key !== `${referenceTile.x}-${referenceTile.y}` && newTiles[key].status !== PASSIVE) {
-			const pos = key.split('-');
-			const tile = { x: parseInt(pos[0]), y: parseInt(pos[1]) };
-
-			newTiles[key].status = calculateStatus({ x: referenceTile.x, y: referenceTile.y }, tile);
+	Object.keys(newTiles).forEach(tileIndex => {
+		if (tileIndex !== referenceTileIndex && newTiles[tileIndex].status !== PASSIVE) {
+			newTiles[tileIndex].status = calculateStatus(referenceTileIndex, tileIndex);
 		}
 	});
 

@@ -2,30 +2,43 @@
 import MOVEMENT_RULES from '../constants/movementRules';
 import { ACTIVE, IDLE } from '../constants/tileStatuses';
 
-export const getPossibleTiles = referencePos =>
-	MOVEMENT_RULES.map(tile => {
-		const nextX = tile.x.operation
-			? tile.x.operation === '+'
-				? referencePos.x + tile.x.value
-				: referencePos.x - tile.x.value
-			: referencePos.x;
-		const nextY = tile.y.operation
-			? tile.y.operation === '+'
-				? referencePos.y + tile.y.value
-				: referencePos.y - tile.y.value
-			: referencePos.y;
+export const getRandomCombination = combinations => {
+	const maxIndex = combinations.length;
+	const randomIndex = Math.floor(Math.random() * maxIndex);
 
-		return {
-			x: nextX,
-			y: nextY,
-		};
+	return combinations[randomIndex];
+};
+
+export const formatTileIndex = (x, y) => `${x}-${y}`;
+
+export const getPositionFromIndex = index => ({
+	x: parseInt(index.split('-')[0]),
+	y: parseInt(index.split('-')[1]),
+});
+
+export const getPossibleTiles = (x, y, boardWidth = 10) => {
+	const tiles = [];
+
+	MOVEMENT_RULES.forEach(rule => {
+		const newX = x + rule.x;
+		const newY = y + rule.y;
+
+		if (newX >= 1 && newX <= boardWidth && newY >= 1 && newY <= boardWidth) {
+			tiles.push(formatTileIndex(newX, newY));
+		}
 	});
 
-export const calculateStatus = (referencePos, newTilePos) => {
-	// get possible tiles from movement rules
-	const possibleTiles = getPossibleTiles(referencePos);
+	return tiles;
+};
 
-	if (possibleTiles.some(tile => tile.x === newTilePos.x && tile.y === newTilePos.y)) {
+export const calculateStatus = (referenceIndex, newTileIndex) => {
+	// get possible tiles from movement rules
+	const possibleTiles = getPossibleTiles(
+		getPositionFromIndex(referenceIndex).x,
+		getPositionFromIndex(referenceIndex).y
+	);
+
+	if (possibleTiles.some(tile => tile === newTileIndex)) {
 		return ACTIVE;
 	}
 
