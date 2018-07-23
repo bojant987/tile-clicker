@@ -12,14 +12,9 @@ npm install
 
 ## Running the project
 
-To run project in dev env with webpack-dev-server, source maps and hot reloading, run:
+To run the project with webpack-dev-server, source maps and hot reloading, run:
 ```sh
 npm run dev
-```
-
-To run project in prod env with express server and minification of resources, run:
-```sh
-npm start
 ```
 
 To run cypress integration tests, make sure you have the app running on local port 8080, and run:
