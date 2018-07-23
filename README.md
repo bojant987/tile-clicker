@@ -17,6 +17,11 @@ To run the project with webpack-dev-server, source maps and hot reloading, run:
 npm run dev
 ```
 
+To run the project in production mode, with minification of resources and express server, run:
+```sh
+npm start
+```
+
 To run cypress integration tests, make sure you have the app running on local port 8080, and run:
 ```sh
 npm run cypress
