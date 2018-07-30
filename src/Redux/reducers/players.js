@@ -64,6 +64,11 @@ export default function players(state = initialState, action) {
 
 			return newState;
 		}
+		case actionTypes.CHOOSE_PLAYER: {
+			saveInStorage('activePlayer', state.find(player => player.name === action.playerName));
+
+			return state;
+		}
 		default:
 			return state;
 	}

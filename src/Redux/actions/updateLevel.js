@@ -60,17 +60,17 @@ const updateLevel = ({ referenceTile, levelNr, levelTiles, activePlayer, timer, 
 		}
 	});
 
-	// if there are no active tiles left, user is stuck, the end
-	if (!Object.values(newTiles).some(tile => tile.status === ACTIVE)) {
-		dispatch(levelFailed({ levelTiles, scoreId, levelNr, activePlayer }));
-
-		return;
-	}
-
 	// all tiles passive === all clicked, dispatch complete level
 	if (Object.values(newTiles).every(tile => tile.status === PASSIVE)) {
 		dispatch(levelCompleted({ levelNr, timer, scoreId, activePlayer }));
 	} else {
+		// if there are no active tiles left, user is stuck, the end
+		if (!Object.values(newTiles).some(tile => tile.status === ACTIVE)) {
+			dispatch(levelFailed({ levelTiles, scoreId, levelNr, activePlayer }));
+
+			return;
+		}
+
 		dispatch(levelUpdated({ levelNr, timer, scoreId, activePlayer, newTiles }));
 	}
 };

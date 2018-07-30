@@ -23,6 +23,7 @@ context('Failing level', () => {
 
 		cy.get('[data-spec=regionLevelFailure]').should('be.visible');
 		cy.get('[data-spec=textLevelFailureMessage]').should('have.text', 'Oh no, what have you done?');
+		cy.get('.rodal-close').click();
 	});
 
 	it("doesn't reset level to 1 if player has remaining lives", () => {
@@ -41,6 +42,7 @@ context('Failing level', () => {
 
 		cy.get('[data-spec=regionLevelFailure]').should('be.visible');
 		cy.get('[data-spec=textLevelFailureMessage]').should('have.text', "Now you've done it. Game over.");
+		cy.get('.rodal-close').click();
 	});
 
 	it('resets level to 1 if player is out of lives', () => {
