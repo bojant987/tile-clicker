@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
-import ALL_LEVELS from '../../Redux/constants/levels';
+import MAX_LEVEL from '../../Redux/constants/maxLevel';
+import { generateLevelsforSelection } from '../../Redux/util/util';
 import chooseLevel from '../../Redux/actions/chooseLevel';
 import getActivePlayer from '../../Redux/selectors/activePlayer';
+
+const ALL_LEVELS = generateLevelsforSelection(MAX_LEVEL);
 
 class ChooseLevel extends Component {
 	static propTypes = {

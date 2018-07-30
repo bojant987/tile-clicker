@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Rodal from 'rodal';
 
+import MAX_LEVEL from '../../Redux/constants/maxLevel';
 import GameStats from './GameStats';
 import Board from './Board';
 import getActivePlayer from '../../Redux/selectors/activePlayer';
@@ -82,7 +83,7 @@ export class _Game extends Component {
 						visible={isSuccessModalOpen}
 						onClose={this.closeSuccessModal}
 					>
-						{levelNr === 99 ? (
+						{levelNr === MAX_LEVEL ? (
 							<div
 								className="Game__status Game__status--finished h-textCenter h-centerBlock"
 								data-spec="regionGameSuccess"

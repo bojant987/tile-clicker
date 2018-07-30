@@ -62,3 +62,9 @@ export const getFromStorage = key => {
 
 	return value;
 };
+
+export const generateLevelsforSelection = maxLevel =>
+	[...Array(maxLevel).keys()].map((_value, index) => ({
+		value: index,
+		label: index,
+	}));

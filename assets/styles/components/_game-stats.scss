@@ -10,6 +10,7 @@
 	transition: 0.3s;
 	opacity: 1;
 	border-bottom: 1px solid $passive;
+	height: $gameStatsHeight;
 
 	&--off {
 		opacity: 0.8;

@@ -1,5 +1,6 @@
 import actionTypes from '../constants/actionTypes';
 import STARTING_LEVEL from '../constants/startingLevel';
+import MAX_LEVEL from '../constants/maxLevel';
 import { getFromStorage } from '../util/util';
 
 const initialLevel = getFromStorage('activePlayer') ? getFromStorage('activePlayer').progress : STARTING_LEVEL;
@@ -34,7 +35,7 @@ export default function currentLevel(state = initialState, action) {
 			return {
 				...state,
 				tiles: {},
-				levelNr: state.levelNr + 1,
+				levelNr: state.levelNr === MAX_LEVEL ? MAX_LEVEL : state.levelNr + 1,
 				inProgress: false,
 				levelSuccess: true,
 				remainingTiles: 0,

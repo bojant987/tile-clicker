@@ -2,8 +2,13 @@
 
 .Game {
 	margin: 0 auto;
-	max-width: 1000px;
 	padding: 40px 0;
+	height: calc(100vh - #{$headerHeight} - #{$footerHeight} - #{$gameStatsHeight});
+	max-width: calc(100vh - #{$headerHeight} - #{$footerHeight} - #{$gameStatsHeight});
+
+	@media(min-width: $phablet) {
+		padding: 40px;
+	}
 }
 
 .Game__status {
